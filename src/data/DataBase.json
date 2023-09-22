@@ -1,0 +1,142 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "user_email": "email1@gmail.com",
+        "user_name": "JCLL",
+        "user_name_quest": false,
+        "password": "123",
+        "user_photo": "https://images.ctfassets.net/m8onsx4mm13s/4b4MLbkRKPDjD5enCd7igN/63dd7a7266e66cff2db0ac277e5ffccd/__static.gibson.com_product-images_USA_USA8LG109_Ebony_front-banner-640_480.png",
+        "user_vehicles": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": 2,
+        "user_email": "email2@gmail.com",
+        "user_name": "Test 2",
+        "user_name_quest": false,
+        "password": "qwe",
+        "user_photo": "",
+        "user_vehicles": [
+          3,
+          4
+        ]
+      }
+    ],
+    "vehicles": [
+      {
+        "id": 1,
+        "owner_id": 1,
+        "photo": "https://www.mustang6g.com/forums/attachments/24451994567_13d9ef57ef_h-jpg.267120/",
+        "vehicle_Nickname": "Lilith",
+        "year": 2020,
+        "brand": "Ford",
+        "model": "Mustang",
+        "status": true,
+        "HP": 350,
+        "pendingWork": [
+          {
+            "id": 1,
+            "task": "Interior cleaning",
+            "categorie": "General"
+          },
+          {
+            "id": 2,
+            "task": "Change to winter tires",
+            "categorie": "Tires"
+          },
+          {
+            "id": 3,
+            "task": "Install new airfilter",
+            "categorie": "Intake & turbo"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "owner_id": 1,
+        "photo": "https://d2qn5pre0p0oeu.cloudfront.net/i6/sBPxCZXZQUi_Wl9H9Yoz9Qn.jpg",
+        "vehicle_Nickname": "Sofia",
+        "year": 2018,
+        "brand": "Harley-Davidson",
+        "model": "Iron 883",
+        "HP": 100,
+        "status": true,
+        "pendingWork": [
+          {
+            "id": 1,
+            "task": "Exterior cleaning",
+            "categorie": "General"
+          },
+          {
+            "id": 2,
+            "task": "Replace front tire",
+            "categorie": "Tires"
+          },
+          {
+            "id": 3,
+            "task": "Change oil",
+            "categorie": "General"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "owner_id": 2,
+        "photo": "https://www.carjunction.com/car_images2/37889_49765/49765g_578x417.jpg",
+        "vehicle_Nickname": "Juanita",
+        "year": 1997,
+        "brand": "Mitsubishi",
+        "model": "Challenger",
+        "HP": 180,
+        "status": true,
+        "pendingWork": [
+          {
+            "id": 1,
+            "task": "Interior cleaning",
+            "categorie": "General"
+          },
+          {
+            "id": 2,
+            "task": "Replace tires",
+            "categorie": "Tires"
+          },
+          {
+            "id": 3,
+            "task": "Replace turbo-intercooler",
+            "categorie": "Intake & turbo"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "owner_id": 2,
+        "photo": "https://images.ctfassets.net/c9t6u0qhbv9e/2014JeepGrandCherokeeTestDriveReviewsummary/dea15e0f44e31ac05c3c2c4cf26be855/2014_Jeep_Grand_Cherokee_Test_Drive_Review_summaryImage.jpeg",
+        "vehicle_Nickname": "Jeepeta",
+        "year": 2014,
+        "brand": "Jeep",
+        "model": "Grand Cherokee Limited",
+        "HP": 295,
+        "status": true,
+        "pendingWork": [
+          {
+            "id": 1,
+            "task": "Change hood",
+            "categorie": "Body"
+          },
+          {
+            "id": 2,
+            "task": "Replace display panel",
+            "categorie": "Electronics"
+          },
+          {
+            "id": 3,
+            "task": "Replace front brakes",
+            "categorie": "Brakes"
+          }
+        ]
+      }
+    ]
+  }
