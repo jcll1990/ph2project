@@ -125,7 +125,13 @@ function Login({setCurrentUser, currentUser, setStartWeb}) {
 
 
   return (
+
+  
   <div className="login-container">
+
+    <h1>Welcome to Demon Hunter</h1>
+    <h3>An old school simple RPG</h3>
+
 
     <h3>LOGIN</h3>
     <form onSubmit={handleLoginSubmit}>

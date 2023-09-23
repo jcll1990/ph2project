@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../../css/GamePage.css";
-import imageToUse1 from "./img1.jpg"
-import imageToUse2 from "./img2.jpg"
-import imageToUse3 from "./img3.jpg"
-import imageToUse4 from "./img4.jpg"
-import demonimg from "./demon.jpg"
+import imageToUse1 from "../../jpgs/img1.jpg"
+import imageToUse2 from "../../jpgs/img2.jpg"
+import imageToUse3 from "../../jpgs/img3.jpg"
+import imageToUse4 from "../../jpgs/img4.jpg"
+import demonimg from "../../jpgs/demon.jpg"
 
 function GamePage() {
   const [position, setPosition] = useState({ x: 100, y: 100 }); // Initial position for the blue square
@@ -14,8 +14,8 @@ function GamePage() {
   const [hp, setHP] = useState(1)
 
   const divStyle = {
-    width: "800px",
-    height: "800px",
+    width: "500px",
+    height: "500px",
     position: "relative", // Set the parent div to relative positioning
     border: "1px solid black", // Optional: Add a border for visualization
   };
@@ -23,16 +23,16 @@ function GamePage() {
     width: "50px",
     height: "50px",
     position: "absolute",
-    top: `${Math.max(0, Math.min(750, position.y))}px`,
-    left: `${Math.max(0, Math.min(750, position.x))}px`,
+    top: `${Math.max(0, Math.min(450, position.y))}px`,
+    left: `${Math.max(0, Math.min(450, position.x))}px`,
   };
   const enemyStyle = {
     width: "50px",
     height: "50px",
     backgroundColor: "red",
     position: "absolute",
-    top: `${Math.max(0, Math.min(750, enemyPosition.y))}px`, // Ensure the red square stays within the div
-    left: `${Math.max(0, Math.min(750, enemyPosition.x))}px`, // Ensure the red square stays within the div
+    top: `${Math.max(0, Math.min(450, enemyPosition.y))}px`, // Ensure the red square stays within the div
+    left: `${Math.max(0, Math.min(450, enemyPosition.x))}px`, // Ensure the red square stays within the div
   };
 
 
@@ -62,6 +62,9 @@ function GamePage() {
   useEffect(() => {
     // Attach event listeners to handle arrow key presses for the blue square
     const handleKeyDown = (e) => {
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        // Prevent the default scrolling behavior
+      e.preventDefault();
       switch (e.key) {
         case "ArrowUp":
           setPosition((prevPosition) => ({ ...prevPosition, y: prevPosition.y - 10 }));
@@ -82,7 +85,7 @@ function GamePage() {
         default:
           break;
       }
-
+    }
     };
 
     // Add event listener for keydown
@@ -122,7 +125,7 @@ function GamePage() {
 
   useEffect(() => {
     // Move the enemy randomly every 500ms (2x times faster)
-    const interval = setInterval(moveEnemy, 500); // Reduced the interval duration
+    const interval = setInterval(moveEnemy, 100); // Reduced the interval duration
 
   }, []);
 
@@ -136,7 +139,7 @@ function GamePage() {
 
   useEffect(()=>{
     if (hp >=5){
-        alert("you lose!!!!!")
+        alert("YOU DIED")
     }
     }, [hp])
 

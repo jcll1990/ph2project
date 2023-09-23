@@ -22,7 +22,7 @@ function App() {
     
       <div className="App">
         
-        <h1>SPACESHIP</h1>
+     
         <button onClick={() => test()}>test</button>
         <Login
         setCurrentUser = {setCurrentUser}
