@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, } from "react";
 import "../../css/GamePage.css";
 import imageToUse1 from "../../jpgs/img1.jpg"
 import imageToUse2 from "../../jpgs/img2.jpg"
@@ -7,161 +7,251 @@ import imageToUse4 from "../../jpgs/img4.jpg"
 import demonimg from "../../jpgs/demon.jpg"
 
 function GamePage() {
-  const [position, setPosition] = useState({ x: 100, y: 100 }); // Initial position for the blue square
-  const [enemyPosition, setEnemyPosition] = useState({ x: 300, y: 300 }); // Initial position for the red square
-  const [attack, setAttack] = useState(false)
-  const [imageToUse, setImageToUse] = useState(imageToUse1)
-  const [hp, setHP] = useState(1)
 
-  const divStyle = {
-    width: "500px",
-    height: "500px",
-    position: "relative", // Set the parent div to relative positioning
-    border: "1px solid black", // Optional: Add a border for visualization
+/////PLAYER VARIABLES
+
+const [playerHP, setPlayerHP] = useState(1)
+const [playerSpeed, setPlayerSpeed] = useState(20)
+const [playerDMG, setPlayerDMG] = useState(1)
+
+const [attack, setAttack] = useState(false)
+const [positionX, setPositionX] = useState(700);
+const [positionY, setPositionY] = useState(750);
+const [imageToUse, setImageToUse] = useState(imageToUse1)
+const [isMovingUp, setIsMovingUp] = useState(false);
+const [isMovingDown, setIsMovingDown] = useState(false);
+const [isMovingLeft, setIsMovingLeft] = useState(false);
+const [isMovingRight, setIsMovingRight] = useState(false);
+
+
+
+///////////ENEMY VARIABLES
+
+const [enemySpeed, setEnemySpeed] = useState(5)
+
+const [enemyAttack, setEnemyAttack] = useState(false)
+
+const [enemyPositionX, setEnemyPositionX] = useState(300); 
+const [enemyPositionY, setEnemyPositionY] = useState(300); 
+const [trigger, setTrigger] = useState(false);
+
+
+
+
+////////////DIVS AND SHIT
+
+  const divMap = {
+    width: "1500px",
+    height: "800px",
+    position: "relative", 
+    border: "10px solid black", 
   };
-  const movableElementStyle = {
+  const playerImg = {
     width: "50px",
     height: "50px",
     position: "absolute",
-    top: `${Math.max(0, Math.min(450, position.y))}px`,
-    left: `${Math.max(0, Math.min(450, position.x))}px`,
+    top: `${Math.max(0, Math.min(750, positionY))}px`,
+    left: `${Math.max(0, Math.min(1450, positionX))}px`,
   };
-  const enemyStyle = {
+  const demonImg = {
     width: "50px",
     height: "50px",
     backgroundColor: "red",
     position: "absolute",
-    top: `${Math.max(0, Math.min(450, enemyPosition.y))}px`, // Ensure the red square stays within the div
-    left: `${Math.max(0, Math.min(450, enemyPosition.x))}px`, // Ensure the red square stays within the div
+    top: `${Math.max(0, Math.min(750, enemyPositionY))}px`, // Ensure the red square stays within the div
+    left: `${Math.max(0, Math.min(1450, enemyPositionX))}px`, // Ensure the red square stays within the div
   };
 
 
 
-  // Function to move the enemy randomly within a 10px radius
-  const moveEnemy = () => {
-  
-    const currentX = enemyPosition.x;
-    const currentY = enemyPosition.y;
+////////////////////////////////////////////PLAYER THINGS
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////Player move
 
-    // Generate random values of -5, 0, or 5 for both x and y directions
-    const moveX = [-10,0,0,+10][Math.floor(Math.random() * 4)];
-    const moveY = [-10,0,0,+10][Math.floor(Math.random() * 4)];
-
-    // Calculate new coordinates
-    const newX = currentX + moveX;
-    const newY = currentY + moveY;
-
-
-
-      setEnemyPosition({ x: newX, y: newY });
-
-    }
-  
-
-
-  useEffect(() => {
-    // Attach event listeners to handle arrow key presses for the blue square
-    const handleKeyDown = (e) => {
-      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
-        // Prevent the default scrolling behavior
+useEffect(() => {
+  const handleKeyDown = (e) => {
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'a'].includes(e.key)) {
       e.preventDefault();
       switch (e.key) {
         case "ArrowUp":
-          setPosition((prevPosition) => ({ ...prevPosition, y: prevPosition.y - 10 }));
-          setImageToUse(imageToUse4)
+          if (!isMovingUp) {
+            setPositionY((prevPositionY) => prevPositionY - playerSpeed);
+            setImageToUse(imageToUse4);
+            setIsMovingUp(true);
+            setAttack(false);
+          }
           break;
         case "ArrowDown":
-          setPosition((prevPosition) => ({ ...prevPosition, y: prevPosition.y + 10 }));
-          setImageToUse(imageToUse1)
+          if (!isMovingDown) {
+            setPositionY((prevPositionY) => prevPositionY + playerSpeed);
+            setImageToUse(imageToUse1);
+            setIsMovingDown(true);
+            setAttack(false);
+          }
           break;
         case "ArrowLeft":
-          setPosition((prevPosition) => ({ ...prevPosition, x: prevPosition.x - 10 }));
-          setImageToUse(imageToUse2)
+          if (!isMovingLeft) {
+            setPositionX((prevPositionX) => prevPositionX - playerSpeed);
+            setImageToUse(imageToUse2);
+            setIsMovingLeft(true);
+            setAttack(false);
+          }
           break;
         case "ArrowRight":
-          setPosition((prevPosition) => ({ ...prevPosition, x: prevPosition.x + 10 }));
-          setImageToUse(imageToUse3)
-          break;            
+          if (!isMovingRight) {
+            setPositionX((prevPositionX) => prevPositionX + playerSpeed);
+            setImageToUse(imageToUse3);
+            setIsMovingRight(true);
+            setAttack(false);
+          }
+          break;
+        case "a":
+          setAttack(true);
+          break;
         default:
           break;
       }
     }
-    };
+  };
 
-    // Add event listener for keydown
-    window.addEventListener("keydown", handleKeyDown);
-
-  }, []);
-
-  useEffect(() => {
-    // Function to handle "A" key press
-    const handleAKeyDown = () => {
-      setAttack(true);
-
-    };
-  
-    // Function to handle "A" key release
-    const handleAKeyUp = () => {
-      setAttack(false);
-    };
-  
-    // Add event listener for "A" keydown
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "a") {
-        handleAKeyDown();
+  const handleKeyUp = (e) => {
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'a'].includes(e.key)) {
+      switch (e.key) {
+        case "ArrowUp":
+          setIsMovingUp(false);
+          setAttack(false);
+          break;
+        case "ArrowDown":
+          setIsMovingDown(false);
+          setAttack(false);
+          break;
+        case "ArrowLeft":
+          setIsMovingLeft(false);
+          setAttack(false);
+          break;
+        case "ArrowRight":
+          setIsMovingRight(false);
+          setAttack(false);
+          break;
+        case "a":
+          setAttack(false);
+          break;
+        default:
+          break;
       }
-    });
-  
-    // Add event listener for "A" keyup
-    window.addEventListener("keyup", (e) => {
-      if (e.key === "a") {
-        handleAKeyUp();
-      }
-    });
-  
-  }, []);
-
-
-
-  useEffect(() => {
-    // Move the enemy randomly every 500ms (2x times faster)
-    const interval = setInterval(moveEnemy, 100); // Reduced the interval duration
-
-  }, []);
-
-  useEffect(()=>{
-  if (position.x === enemyPosition.x 
-    && 
-    position.y === enemyPosition.y) {
-    setHP(prev => prev + 1)
-  }
-  }, [position, enemyPosition ])
-
-  useEffect(()=>{
-    if (hp >=5){
-        alert("YOU DIED")
     }
-    }, [hp])
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+  window.addEventListener("keyup", handleKeyUp);
+
+  // Clean up the event listeners when the component unmounts
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+    window.removeEventListener("keyup", handleKeyUp);
+  };
+}, [isMovingUp, isMovingDown, isMovingLeft, isMovingRight, attack]);
+
+
+
+
+
+////////////////////////////////////////////ENEMY THINGS
+/////////////////////////////////////////////////////////////////////////////////////
+//////////ENEMY move
+
+  function moveEnemy() {
+    let dx = 0
+    let dy = 0
+
+    if (positionX > enemyPositionX) {
+      dx = 1} else if (positionX < enemyPositionX) {
+      dx = -1} else {dx = 0}
+
+    if (positionY > enemyPositionY) {
+      dy = 1} else if (positionY < enemyPositionY) {
+        dy = -1} else {dy = 0}
+
+    setEnemyPositionX((prevPositionX) => prevPositionX + dx * enemySpeed);
+    setEnemyPositionY((prevPositionY) => prevPositionY + dy * enemySpeed);
+  }
+  
+  useEffect(() => {
+    const interval = setInterval(moveEnemy, 100); 
+  
+    return () => {
+      clearInterval(interval);
+    };
+  }, [trigger]);
+  
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+
+      setTrigger((prevTrigger) => !prevTrigger);
+    }, 300); 
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []); 
+  
+
+////////////////ENEMY ATTACK
+
+useEffect(() => {
+  const toggleAttack = () => {
+    setEnemyAttack(true);
+    setTimeout(() => {
+      setEnemyAttack(false);
+    }, 300); // Set the enemyAttack to false after 300 milliseconds
+  };
+
+  // Start with an initial toggle
+  toggleAttack();
+
+  // Set up an interval to toggle the enemyAttack state every 3000 milliseconds (3 seconds)
+  const intervalId = setInterval(toggleAttack, 3000);
+
+  // Clean up the interval when the component unmounts
+  return () => {
+    clearInterval(intervalId);
+  };
+}, []);
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////GAME HTML
+//////////////////////////////////////////////////////////////
 
   return (
+
     <div>
-        <div style={divStyle}>
+          <>
+    <button onClick={() => test()}>test</button>
+    </>
+        <div style={divMap}>
         <img 
             src={imageToUse}
-            style={movableElementStyle}
+            style={playerImg}
             alt="Your Image Description"
         />
 
         <img 
             src={demonimg}
-            style={enemyStyle}
+            style={demonImg}
             alt="Your Image Description"
         />
         </div>
       <div style={{ position: "absolute", color: "black" }}>
-        <p>{position.x}</p>
-        <p>{position.y}</p>
-        <h1>HP:  {hp}--- at 5 you are dead</h1>
+        <p>{positionX}</p>
+        <p>{positionY}</p>
+        <h1>HP:  {playerHP}--- at 5 you are dead</h1>
         <>
         {attack?
         <p>ATTACKING</p>
@@ -169,8 +259,14 @@ function GamePage() {
         <p>NOT attacking</p>}
         </>
         <p>Enemy:</p>
-        <p>{enemyPosition.x}</p>
-        <p>{enemyPosition.y}</p>
+        <p>{enemyPositionX}</p>
+        <p>{enemyPositionY}</p>
+        <>
+        {enemyAttack?
+        <p>ENEMY ATTACKING</p>
+        :
+        <p>NOT attacking</p>}
+        </>
       </div>
     </div>
   );
