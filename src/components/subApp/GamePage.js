@@ -8,10 +8,14 @@ import demonimg from "../../jpgs/demon.jpg"
 
 function GamePage() {
 
+const [hit, setHit] = useState(false)
+const [contador1, setContador1] =useState(100)
+const [contador2, setContador2] =useState(10)
+
 /////PLAYER VARIABLES
 
 const [playerHP, setPlayerHP] = useState(1)
-const [playerSpeed, setPlayerSpeed] = useState(20)
+const [playerSpeed, setPlayerSpeed] = useState(10)
 const [playerDMG, setPlayerDMG] = useState(1)
 
 const [attack, setAttack] = useState(false)
@@ -27,7 +31,7 @@ const [isMovingRight, setIsMovingRight] = useState(false);
 
 ///////////ENEMY VARIABLES
 
-const [enemySpeed, setEnemySpeed] = useState(5)
+const [enemySpeed, setEnemySpeed] = useState(2)
 
 const [enemyAttack, setEnemyAttack] = useState(false)
 
@@ -203,14 +207,14 @@ useEffect(() => {
     setEnemyAttack(true);
     setTimeout(() => {
       setEnemyAttack(false);
-    }, 300); // Set the enemyAttack to false after 300 milliseconds
+    }, 800); // Set the enemyAttack to false after 300 milliseconds
   };
 
   // Start with an initial toggle
   toggleAttack();
 
   // Set up an interval to toggle the enemyAttack state every 3000 milliseconds (3 seconds)
-  const intervalId = setInterval(toggleAttack, 3000);
+  const intervalId = setInterval(toggleAttack, 2000);
 
   // Clean up the interval when the component unmounts
   return () => {
@@ -219,8 +223,29 @@ useEffect(() => {
 }, []);
 
 
+////////////////////////////////////// HIT
 
+useEffect(() => {
+  if (((enemyPositionX - 50) <= positionX) && (positionX <= (enemyPositionX + 50)) && ((enemyPositionY - 50) <= positionY) && (positionY <= (enemyPositionY + 50))) {
+    setHit(true);
+  } else {
+    setHit(false);
+  }
+}, [positionX, positionY, enemyPositionX, enemyPositionY, attack, enemyAttack]);
 
+useEffect(() => {
+  if (attack && hit) {
+    setContador1((prevConsetContador1) => prevConsetContador1 - 1);
+  }
+
+}, [attack, enemyAttack]);
+
+useEffect(() => {
+  if (enemyAttack && hit) {
+    setContador2((prevConsetContador2) => prevConsetContador2 - 1);
+  }
+
+}, [attack, enemyAttack]);
 
 
 
@@ -249,8 +274,19 @@ useEffect(() => {
         />
         </div>
       <div style={{ position: "absolute", color: "black" }}>
-        <p>{positionX}</p>
-        <p>{positionY}</p>
+
+      <>
+      <h1>DEMON HP: {contador1}</h1>
+      <h1>WARRIOR HP: {contador2}</h1>
+        {hit?
+        <p>HIT</p>
+        :
+        <p>NOT HIT</p>}
+        </>
+
+
+        <p>{positionX}X</p>
+        <p>{positionY}Y</p>
         <h1>HP:  {playerHP}--- at 5 you are dead</h1>
         <>
         {attack?
