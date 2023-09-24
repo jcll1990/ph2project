@@ -1,0 +1,11 @@
+/* YourComponent.css */
+
+.map-container {
+    width: 1500px;
+    height: 800px;
+    position: relative;
+    border: 10px solid black;
+    background-image: url("../jpgs/maps/mapasa.png");
+    background-size: cover; /* Adjust as needed */
+  }
+  

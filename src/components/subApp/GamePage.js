@@ -1,10 +1,11 @@
 import React, { useEffect, useState, } from "react";
 import "../../css/GamePage.css";
-import imageToUse1 from "../../jpgs/img1.jpg"
-import imageToUse2 from "../../jpgs/img2.jpg"
-import imageToUse3 from "../../jpgs/img3.jpg"
-import imageToUse4 from "../../jpgs/img4.jpg"
-import demonimg from "../../jpgs/demon.jpg"
+import imageToUse1 from "../../jpgs/champ2/champ2.gif"
+import imageToUse2 from "../../jpgs/champ2/champ2.gif"
+import imageToUse3 from "../../jpgs/champ2/champ2.gif"
+import imageToUse4 from "../../jpgs/champ2/champ2.gif"
+import demonimg from "../../jpgs/demon/demon1.gif"
+import map from "../../jpgs/maps/Best map.png"
 
 function GamePage() {
 
@@ -15,7 +16,7 @@ const [contador2, setContador2] =useState(10)
 /////PLAYER VARIABLES
 
 const [playerHP, setPlayerHP] = useState(1)
-const [playerSpeed, setPlayerSpeed] = useState(10)
+const [playerSpeed, setPlayerSpeed] = useState(20)
 const [playerDMG, setPlayerDMG] = useState(1)
 
 const [attack, setAttack] = useState(false)
@@ -31,7 +32,7 @@ const [isMovingRight, setIsMovingRight] = useState(false);
 
 ///////////ENEMY VARIABLES
 
-const [enemySpeed, setEnemySpeed] = useState(2)
+const [enemySpeed, setEnemySpeed] = useState(5)
 
 const [enemyAttack, setEnemyAttack] = useState(false)
 
@@ -47,20 +48,22 @@ const [trigger, setTrigger] = useState(false);
   const divMap = {
     width: "1500px",
     height: "800px",
-    position: "relative", 
-    border: "10px solid black", 
+    position: "relative",
+    border: "10px solid black",
+    backgroundImage: `url(${map})`, // Set the background image
+    backgroundSize: "cover", // Adjust the background size as needed
   };
+
   const playerImg = {
-    width: "50px",
-    height: "50px",
+    width: "200px",
+    height: "200px",
     position: "absolute",
-    top: `${Math.max(0, Math.min(750, positionY))}px`,
+    top: `${Math.max(0, Math.min(7200, positionY))}px`,
     left: `${Math.max(0, Math.min(1450, positionX))}px`,
   };
   const demonImg = {
-    width: "50px",
-    height: "50px",
-    backgroundColor: "red",
+    width: "150px",
+    height: "150px",
     position: "absolute",
     top: `${Math.max(0, Math.min(750, enemyPositionY))}px`, // Ensure the red square stays within the div
     left: `${Math.max(0, Math.min(1450, enemyPositionX))}px`, // Ensure the red square stays within the div
@@ -260,7 +263,7 @@ useEffect(() => {
           <>
     <button onClick={() => test()}>test</button>
     </>
-        <div style={divMap}>
+    <div className="map-container">
         <img 
             src={imageToUse}
             style={playerImg}
@@ -273,7 +276,7 @@ useEffect(() => {
             alt="Your Image Description"
         />
         </div>
-      <div style={{ position: "absolute", color: "black" }}>
+      <div style={{ position: "absolute"}}>
 
       <>
       <h1>DEMON HP: {contador1}</h1>
