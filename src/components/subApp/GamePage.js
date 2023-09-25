@@ -3,41 +3,23 @@ import "../../css/GamePage.css";
 
 
 
-import map from "./images/maps/Best map.png"
-import map2 from "./images/maps/mapasa.png"
 
-
-import champ1attackl from "./images/champ1/champ1attackl.gif"
-import champ1attackr from "./images/champ1/champ1attackr.gif"
-import champ1runr from "./images/champ1/champ1runr.gif"
-import champ1runl from "./images/champ1/champ1runl.gif"
 
 import champ2attackl from "./images/champ2/champ2attackl.gif"
 import champ2attackr from "./images/champ2/champ2attackr.gif"
 import champ2runr from "./images/champ2/champ2runr.gif"
 import champ2runl from "./images/champ2/champ2runl.gif"
 
-import champ3attackl from "./images/champ3/camp3attackl.gif"
-import champ3attackr from "./images/champ3/camp3attackr.gif"
-import champ3runr from "./images/champ3/champ3runr.gif"
-import champ3runl from "./images/champ3/champ3runl.gif"
-
 import demon1run from "./images/demon1/demon1run.gif"
 import demon1attack from "./images/demon1/demon1attack.gif"
-import demon2run from "./images/demon2/demon2run.gif"
-import demon2attack from "./images/demon2/demon2attack.gif"
-
-function GamePage({playerImag, playerHP, playerSpeed, playerDMG }) {
 
 
+function GamePage({playerHP, playerSpeed, playerDMG, setPlayerHP}) {
+
+   
 
 const [hit, setHit] = useState(false)
-
-/////PLAYER VARIABLES
-
-
-
-const [imageToUse, setImageToUse] = useState(champ3runr)
+const [imageToUse, setImageToUse] = useState(champ2runr)
 
 
 const [attack, setAttack] = useState(false)
@@ -52,7 +34,7 @@ const [isMovingRight, setIsMovingRight] = useState(false);
 
 ///////////ENEMY VARIABLES
 
-const [enemySpeed, setEnemySpeed] = useState(5)
+const [enemySpeed, setEnemySpeed] = useState(0)
 const [enemyHP, setEnemyHP] = useState(5)
 
 
@@ -68,14 +50,6 @@ const [trigger, setTrigger] = useState(false);
 
 ////////////DIVS AND SHIT
 
-  const divMap = {
-    width: "1500px",
-    height: "800px",
-    position: "relative",
-    border: "10px solid black",
-    backgroundImage: `url(${map})`, // Set the background image
-    backgroundSize: "cover", // Adjust the background size as needed
-  };
 
   const playerImg = {
     width: "80px",
@@ -105,30 +79,32 @@ useEffect(() => {
       switch (e.key) {
         case "ArrowUp":
           if (!isMovingUp) {
-            setPositionY((prevPositionY) => prevPositionY - playerSpeed);
+            setPositionY((prevPositionY) => prevPositionY - 10 - playerSpeed);
+
             setIsMovingUp(true);
             setAttack(false);
           }
           break;
         case "ArrowDown":
           if (!isMovingDown) {
-            setPositionY((prevPositionY) => prevPositionY + playerSpeed);
+            setPositionY((prevPositionY) => prevPositionY + 10 + playerSpeed);
+
             setIsMovingDown(true);
             setAttack(false);
           }
           break;
         case "ArrowLeft":
           if (!isMovingLeft) {
-            setPositionX((prevPositionX) => prevPositionX - playerSpeed);
-            setImageToUse(champ3runl);
+            setPositionX((prevPositionX) => prevPositionX - 10 - playerSpeed);
+            setImageToUse(champ2runl);
             setIsMovingLeft(true);
             setAttack(false);
           }
           break;
         case "ArrowRight":
           if (!isMovingRight) {
-            setPositionX((prevPositionX) => prevPositionX + playerSpeed);
-            setImageToUse(champ3runr);
+            setPositionX((prevPositionX) => prevPositionX + 10 + playerSpeed);
+            setImageToUse(champ2runr);
             setIsMovingRight(true);
             setAttack(false);
           }
@@ -137,7 +113,7 @@ useEffect(() => {
           setAttack(true);
 
 
-          if (imageToUse == champ3runl) { setImageToUse(champ3attackl)} else {setImageToUse(champ3attackr)}
+          if (imageToUse == champ2runl) { setImageToUse(champ2attackl)} else {setImageToUse(champ2attackr)}
 
           
           break;
@@ -252,7 +228,7 @@ useEffect(() => {
 
   
 
-}, []);
+}, [enemyAttack,attack]);
 
 
 ////////////////////////////////////// HIT
@@ -264,11 +240,11 @@ useEffect(() => {
     setHit(false);
   }
 }, [positionX, positionY, enemyPositionX, enemyPositionY, attack, enemyAttack]);
-/*
+
 useEffect(() => {
   if (enemyAttack && hit) {
     setPlayerHP((prevPlayerHP) => prevPlayerHP - 1);
-    if(playerHP <=1) {alert("Pierdes")} else {}
+
   }
 
 }, [attack, enemyAttack]);
@@ -276,11 +252,11 @@ useEffect(() => {
 useEffect(() => {
   if (attack && hit) {
     setEnemyHP((prevEnemyHP) => prevEnemyHP - playerDMG);
-    if(enemyHP <=1) {alert("Ganas")} else {}
+
   }
 
 }, [attack, enemyAttack]);
-*/
+
 
 
 

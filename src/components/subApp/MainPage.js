@@ -1,40 +1,44 @@
-import React, { useEffect, useState, } from "react";
-import GamePage from "./GamePage.js";
+import React from "react";
+import PlayerStats from "./subMP/PlayerStats";
+import PlayerUpgrades from "./subMP/PlayerUpgrades";
+import GameUpgrades from "./subMP/GameUpgrades";
+import GameLauncher from "./subMP/GameLauncher";
 
-function MainPage({player}) {
+function MainPage({ 
+    player,
+    playerHP,
+    playerSpeed,
+    playerDMG,
+    playerMoney, 
+    setPlayerHP,
+    setPlayerSpeed,
+    setPlayerDMG,
+    setPlayerMoney
+}) {
 
 
-    const [playerImag, setPlayerImg] = useState()
-    const [playerHP, setPlayerHP] = useState()
-    const [playerSpeed, setPlayerSpeed] = useState()
-    const [playerDMG, setPlayerDMG] = useState() 
-
-    
-
-    useEffect(() => {
-  
-        setPlayerImg(player.user_champ)
-        setPlayerHP(player.user_hp)
-        setPlayerSpeed(player.user_speed)
-        setPlayerDMG(player.user_dmg)
-
-}, [player]);
     
     return (
+    <>
 
-
-
-
-
-
-
-    <GamePage
-    playerImag={playerImag}
-    playerHP={playerHP}
-    playerSpeed={playerSpeed}
-    playerDMG={playerDMG}
+    <PlayerStats
+            playerHP = {playerHP}
+            playerSpeed = {playerSpeed}
+            playerDMG = {playerDMG}
+            playerMoney = {playerMoney}
     />
 
+    <PlayerUpgrades
+
+    />
+
+    <GameUpgrades
+    />
+
+    <GameLauncher
+    />
+
+    </>
     )
 
 }

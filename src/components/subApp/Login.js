@@ -1,49 +1,55 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState,} from "react";
 
-function Login({setCurrentUser, currentUser, setStartWeb}) {
+function Login({setPlayer, allData, player, logPlayer , setLogPlayer}) {
 
   const [showCA, setShowCA] = useState (false)
   const [showCP, setShowCP] = useState (false)
  
 //LOGING 
+
+
   function handleLoginSubmit(event) {
+
+    
     event.preventDefault();
   
     const logEmail = event.target.loginEmail.value;
     const logPass = event.target.loginPass.value;
 
+    console.log(allData)
+    console.log(logEmail)
+    console.log(logPass)
+
+    let userFound = false;
+
     if (logEmail.trim() !== "") {
   
-    fetch(`http://localhost:3000/users`)
-      .then((resp) => resp.json())
-      .then((data) => {
 
-        let userFound = false;
-  
-        for (let i = 0; i < data.length; i++) {
-          if (data[i].user_email === logEmail) {
-            setCurrentUser(data[i])
-            userFound = true;
+        for (let i = 0; i < allData.length; i++) {
+          if (allData[i].user_email === logEmail) {
+            setLogPlayer(allData[i])
+            userFound = true  
+            login (logPlayer)
             break;
           }
-        }
-        if (!userFound) {
-          alert('User not found');
-        }
-        if (userFound) {
-
-          if (currentUser && currentUser.password === logPass) {
-            setStartWeb(true)
-          } else {
-            alert("Wrong password");
-            event.target.loginPass.value = ""
-          }
-         }
-      });
+        }    
     } else {
       alert("Write down an email dude")
     } 
+
+    function login (a) {
+      if (!userFound) {
+        alert("user not found")
+      } else if (a.password === logPass) {
+        alert("Logged in")
+        setPlayer(a)
+        console.log(player)
+      } else {
+        alert("Wrong Password")
+      }
+    }
+
   }
 
 //CREATE ACCOUNT
@@ -78,12 +84,13 @@ function Login({setCurrentUser, currentUser, setStartWeb}) {
         } else if (newPass.includes(" ")) {
           alert("Password cannot contain spaces");
         } else {
+
           const newUser = {
             id: "",
             user_email: newEmail,
             user_name: "",
             user_name_quest: false,
-            password: "newPass",
+            password: newPass,
             user_photo: "",
             user_upgrades: [],
             user_money : 0,
@@ -96,7 +103,8 @@ function Login({setCurrentUser, currentUser, setStartWeb}) {
           }
 
           addNewUser(newUser);
-          
+
+                    
         }
       });
   }
@@ -115,6 +123,7 @@ function Login({setCurrentUser, currentUser, setStartWeb}) {
    
         alert("New user created")
         setShowCA(false)
+        window.location.reload();
       })
   }
   

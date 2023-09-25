@@ -1,59 +1,81 @@
 import React from "react";
-import Login from "./subApp/Login.js";
 
+import Login from "./subApp/Login.js";
 import MainPage from "./subApp/MainPage.js";
+import GamePage from "./subApp/GamePage.js";
 
 
 import { useState, useEffect} from "react";
 
 function App() {
 
-  const [player,setPlayer] =useState({})
-  const [currentUser, setCurrentUser] = useState (1)
-  const [startWeb, setStartWeb] = useState (false)
+  useEffect(() => {
+    fetch(`http://localhost:3000/users`)
+      .then((resp) => resp.json())
+      .then((data) => {
+        setAllData(data);
+      });
+  }, []);
 
-  function test(){
-    console.log(currentUser)
-    console.log(startWeb)
-  }
+
+  const [player,setPlayer] =useState({})
+  const [allData, setAllData] = useState([])
+  const [logPlayer, setLogPlayer] = useState([])
+
+  const [playerHP, setPlayerHP] = useState(1)
+  const [playerSpeed, setPlayerSpeed] = useState(1)
+  const [playerDMG, setPlayerDMG] = useState(1) 
+  const [playerMoney, setPlayerMoney] = useState(0) 
+
 
   useEffect(() => {
-   
-    fetch(`http://localhost:3000/users/${currentUser}`)
-      .then(resp => resp.json())
-      .then(data => {
-        setPlayer(data);	
-      })            
-}, []);
+
+    setPlayerHP(player.user_hp)
+    setPlayerSpeed(player.user_speed)
+    setPlayerDMG(player.user_dmg)
+    setPlayerMoney(player.user_money)
+
+  }, [player]);
 
 
-
-
-
-
-  
 
   return (
 
     
       <div className="App">
         
-     
-        <button onClick={() => test()}>test</button>
         <Login
-        setCurrentUser = {setCurrentUser}
-        currentUser = {currentUser}
-        setStartWeb = {setStartWeb}
+            allData = {allData}
+            setPlayer = {setPlayer}
+            player = {player}
+            logPlayer = {logPlayer}
+            setLogPlayer = {setLogPlayer}
+
         />
 
         <MainPage
-        player = {player}
-        
+            player = {player}
+
+            playerHP = {playerHP}
+            playerSpeed = {playerSpeed}
+            playerDMG = {playerDMG}
+            playerMoney = {playerMoney}
+
+            setPlayerHP={setPlayerHP}
+            setPlayerSpeed = {setPlayerSpeed}
+            setPlayerDMG = {setPlayerSpeed}
+            setPlayerMoney = {setPlayerSpeed}
+            
         />
 
 
-   
-
+        <GamePage
+            playerHP={playerHP}
+            playerSpeed={playerSpeed}
+            playerDMG={playerDMG}
+            player={player}
+            setPlayerHP = {setPlayerHP}
+            />
  
       </div>
   );
