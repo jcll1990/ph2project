@@ -1,28 +1,48 @@
 import React, { useEffect, useState, } from "react";
 import "../../css/GamePage.css";
-import imageToUse1 from "../../jpgs/champ2/champ2.gif"
-import imageToUse2 from "../../jpgs/champ2/champ2.gif"
-import imageToUse3 from "../../jpgs/champ2/champ2.gif"
-import imageToUse4 from "../../jpgs/champ2/champ2.gif"
-import demonimg from "../../jpgs/demon/demon1.gif"
-import map from "../../jpgs/maps/Best map.png"
 
-function GamePage() {
+
+
+import map from "./images/maps/Best map.png"
+import map2 from "./images/maps/mapasa.png"
+
+
+import champ1attackl from "./images/champ1/champ1attackl.gif"
+import champ1attackr from "./images/champ1/champ1attackr.gif"
+import champ1runr from "./images/champ1/champ1runr.gif"
+import champ1runl from "./images/champ1/champ1runl.gif"
+
+import champ2attackl from "./images/champ2/champ2attackl.gif"
+import champ2attackr from "./images/champ2/champ2attackr.gif"
+import champ2runr from "./images/champ2/champ2runr.gif"
+import champ2runl from "./images/champ2/champ2runl.gif"
+
+import champ3attackl from "./images/champ3/camp3attackl.gif"
+import champ3attackr from "./images/champ3/camp3attackr.gif"
+import champ3runr from "./images/champ3/champ3runr.gif"
+import champ3runl from "./images/champ3/champ3runl.gif"
+
+import demon1run from "./images/demon1/demon1run.gif"
+import demon1attack from "./images/demon1/demon1attack.gif"
+import demon2run from "./images/demon2/demon2run.gif"
+import demon2attack from "./images/demon2/demon2attack.gif"
+
+function GamePage({playerImag, playerHP, playerSpeed, playerDMG }) {
+
+
 
 const [hit, setHit] = useState(false)
-const [contador1, setContador1] =useState(100)
-const [contador2, setContador2] =useState(10)
 
 /////PLAYER VARIABLES
 
-const [playerHP, setPlayerHP] = useState(1)
-const [playerSpeed, setPlayerSpeed] = useState(20)
-const [playerDMG, setPlayerDMG] = useState(1)
+
+
+const [imageToUse, setImageToUse] = useState(champ3runr)
+
 
 const [attack, setAttack] = useState(false)
 const [positionX, setPositionX] = useState(700);
-const [positionY, setPositionY] = useState(750);
-const [imageToUse, setImageToUse] = useState(imageToUse1)
+const [positionY, setPositionY] = useState(600);
 const [isMovingUp, setIsMovingUp] = useState(false);
 const [isMovingDown, setIsMovingDown] = useState(false);
 const [isMovingLeft, setIsMovingLeft] = useState(false);
@@ -33,9 +53,12 @@ const [isMovingRight, setIsMovingRight] = useState(false);
 ///////////ENEMY VARIABLES
 
 const [enemySpeed, setEnemySpeed] = useState(5)
+const [enemyHP, setEnemyHP] = useState(5)
+
+
+const [enemyImg, setEnemyImg] = useState(demon1run)
 
 const [enemyAttack, setEnemyAttack] = useState(false)
-
 const [enemyPositionX, setEnemyPositionX] = useState(300); 
 const [enemyPositionY, setEnemyPositionY] = useState(300); 
 const [trigger, setTrigger] = useState(false);
@@ -55,8 +78,8 @@ const [trigger, setTrigger] = useState(false);
   };
 
   const playerImg = {
-    width: "200px",
-    height: "200px",
+    width: "80px",
+    height: "80px",
     position: "absolute",
     top: `${Math.max(0, Math.min(7200, positionY))}px`,
     left: `${Math.max(0, Math.min(1450, positionX))}px`,
@@ -73,7 +96,7 @@ const [trigger, setTrigger] = useState(false);
 
 ////////////////////////////////////////////PLAYER THINGS
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////Player move
+//////////Player move and attack
 
 useEffect(() => {
   const handleKeyDown = (e) => {
@@ -83,7 +106,6 @@ useEffect(() => {
         case "ArrowUp":
           if (!isMovingUp) {
             setPositionY((prevPositionY) => prevPositionY - playerSpeed);
-            setImageToUse(imageToUse4);
             setIsMovingUp(true);
             setAttack(false);
           }
@@ -91,7 +113,6 @@ useEffect(() => {
         case "ArrowDown":
           if (!isMovingDown) {
             setPositionY((prevPositionY) => prevPositionY + playerSpeed);
-            setImageToUse(imageToUse1);
             setIsMovingDown(true);
             setAttack(false);
           }
@@ -99,7 +120,7 @@ useEffect(() => {
         case "ArrowLeft":
           if (!isMovingLeft) {
             setPositionX((prevPositionX) => prevPositionX - playerSpeed);
-            setImageToUse(imageToUse2);
+            setImageToUse(champ3runl);
             setIsMovingLeft(true);
             setAttack(false);
           }
@@ -107,13 +128,18 @@ useEffect(() => {
         case "ArrowRight":
           if (!isMovingRight) {
             setPositionX((prevPositionX) => prevPositionX + playerSpeed);
-            setImageToUse(imageToUse3);
+            setImageToUse(champ3runr);
             setIsMovingRight(true);
             setAttack(false);
           }
           break;
         case "a":
           setAttack(true);
+
+
+          if (imageToUse == champ3runl) { setImageToUse(champ3attackl)} else {setImageToUse(champ3attackr)}
+
+          
           break;
         default:
           break;
@@ -217,12 +243,15 @@ useEffect(() => {
   toggleAttack();
 
   // Set up an interval to toggle the enemyAttack state every 3000 milliseconds (3 seconds)
-  const intervalId = setInterval(toggleAttack, 2000);
+  const intervalId = setInterval(toggleAttack, 1000);
 
   // Clean up the interval when the component unmounts
   return () => {
     clearInterval(intervalId);
   };
+
+  
+
 }, []);
 
 
@@ -235,21 +264,23 @@ useEffect(() => {
     setHit(false);
   }
 }, [positionX, positionY, enemyPositionX, enemyPositionY, attack, enemyAttack]);
+/*
+useEffect(() => {
+  if (enemyAttack && hit) {
+    setPlayerHP((prevPlayerHP) => prevPlayerHP - 1);
+    if(playerHP <=1) {alert("Pierdes")} else {}
+  }
+
+}, [attack, enemyAttack]);
 
 useEffect(() => {
   if (attack && hit) {
-    setContador1((prevConsetContador1) => prevConsetContador1 - 1);
+    setEnemyHP((prevEnemyHP) => prevEnemyHP - playerDMG);
+    if(enemyHP <=1) {alert("Ganas")} else {}
   }
 
 }, [attack, enemyAttack]);
-
-useEffect(() => {
-  if (enemyAttack && hit) {
-    setContador2((prevConsetContador2) => prevConsetContador2 - 1);
-  }
-
-}, [attack, enemyAttack]);
-
+*/
 
 
 
@@ -271,7 +302,7 @@ useEffect(() => {
         />
 
         <img 
-            src={demonimg}
+            src={enemyAttack === true ? demon1attack : demon1run}
             style={demonImg}
             alt="Your Image Description"
         />
@@ -279,33 +310,9 @@ useEffect(() => {
       <div style={{ position: "absolute"}}>
 
       <>
-      <h1>DEMON HP: {contador1}</h1>
-      <h1>WARRIOR HP: {contador2}</h1>
-        {hit?
-        <p>HIT</p>
-        :
-        <p>NOT HIT</p>}
-        </>
-
-
-        <p>{positionX}X</p>
-        <p>{positionY}Y</p>
-        <h1>HP:  {playerHP}--- at 5 you are dead</h1>
-        <>
-        {attack?
-        <p>ATTACKING</p>
-        :
-        <p>NOT attacking</p>}
-        </>
-        <p>Enemy:</p>
-        <p>{enemyPositionX}</p>
-        <p>{enemyPositionY}</p>
-        <>
-        {enemyAttack?
-        <p>ENEMY ATTACKING</p>
-        :
-        <p>NOT attacking</p>}
-        </>
+      <h1>PLAYER HP: {playerHP}</h1>
+      <h1>DEMON HP: {enemyHP}</h1>
+      </>
       </div>
     </div>
   );

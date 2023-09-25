@@ -1,20 +1,36 @@
 import React from "react";
 import Login from "./subApp/Login.js";
-import GamePage from "./subApp/GamePage.js";
 
-import { useState} from "react";
+import MainPage from "./subApp/MainPage.js";
+
+
+import { useState, useEffect} from "react";
 
 function App() {
+
+  const [player,setPlayer] =useState({})
+  const [currentUser, setCurrentUser] = useState (1)
+  const [startWeb, setStartWeb] = useState (false)
 
   function test(){
     console.log(currentUser)
     console.log(startWeb)
   }
 
- 
+  useEffect(() => {
+   
+    fetch(`http://localhost:3000/users/${currentUser}`)
+      .then(resp => resp.json())
+      .then(data => {
+        setPlayer(data);	
+      })            
+}, []);
 
-  const [currentUser, setCurrentUser] = useState ()
-  const [startWeb, setStartWeb] = useState (false)
+
+
+
+
+
   
 
   return (
@@ -30,8 +46,12 @@ function App() {
         setStartWeb = {setStartWeb}
         />
 
-        <GamePage
+        <MainPage
+        player = {player}
+        
         />
+
+
    
 
  

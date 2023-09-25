@@ -9,10 +9,11 @@
         "user_photo": "",
         "user_upgrades": [],
         "user_money" : 0,
-        "user_hp" : 1,
+        "user_hp" : 10,
         "user_speed" : 1,
-        "user_attack" : 1,
+        "user_dmg" : 1,
         "user_lvl" : 1,
+        "user_champ" : 3,
         "difficulty" : false
       }
     ],

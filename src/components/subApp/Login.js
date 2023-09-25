@@ -82,11 +82,18 @@ function Login({setCurrentUser, currentUser, setStartWeb}) {
             id: "",
             user_email: newEmail,
             user_name: "",
-            user_name_quest: true,
-            password: newPass,
+            user_name_quest: false,
+            password: "newPass",
             user_photo: "",
-            user_vehicles: [],
-          };
+            user_upgrades: [],
+            user_money : 0,
+            user_hp : 10,
+            user_speed : 1,
+            user_dmg : 1,
+            user_lvl : 1,
+            user_champ : 3,
+            difficulty : false
+          }
 
           addNewUser(newUser);
           
