@@ -4,6 +4,7 @@ import PlayerUpgrades from "./subMP/PlayerUpgrades";
 import GameUpgrades from "./subMP/GameUpgrades";
 import GameLauncher from "./subMP/GameLauncher";
 
+
 function MainPage({ 
     player,
     playerHP,
@@ -20,7 +21,6 @@ function MainPage({
     
     return (
     <>
-
     <PlayerStats
             playerHP = {playerHP}
             playerSpeed = {playerSpeed}

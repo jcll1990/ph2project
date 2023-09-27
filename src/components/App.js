@@ -69,13 +69,13 @@ function App() {
         />
 
 
-        <GamePage
+        {/* <GamePage
             playerHP={playerHP}
             playerSpeed={playerSpeed}
             playerDMG={playerDMG}
             player={player}
             setPlayerHP = {setPlayerHP}
-            />
+            /> */}
  
       </div>
   );
