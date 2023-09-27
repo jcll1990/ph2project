@@ -21,13 +21,40 @@
         0,
         0
       ],
-      "user_money": 0,
+
+      "user_money": 200,
+
       "user_hp": 10,
       "user_speed": 10,
       "user_dmg": 1,
       "user_lvl": 1,
       "user_champ": 2,
-      "difficulty": false
+      "difficulty": false,
+      "playerHP": 10,
+      "playerSpeed": 10,
+      "playerDMG": 1,
+      "playerMoney": 100
+    },
+    {
+      "playerHP": 10,
+      "playerSpeed": 10,
+      "playerDMG": 1,
+      "playerMoney": 100,
+      "id": 2
+    },
+    {
+      "playerHP": 10,
+      "playerSpeed": 10,
+      "playerDMG": 3,
+      "playerMoney": 0,
+      "id": 3
+    },
+    {
+      "playerHP": 10,
+      "playerSpeed": 10,
+      "playerDMG": 1,
+      "playerMoney": 0,
+      "id": 4
     }
   ],
   "items": [
@@ -36,7 +63,10 @@
       "name": "Leather armor",
       "added_power": 10,
       "price": 200,
-      "img": "../images/items/armors/a1",
+
+      "img": "/items/armors/a1.png",
+      "type": "armor",
+
       "indx": 0
     },
     {
@@ -44,7 +74,10 @@
       "name": "Ligth armor",
       "added_power": 20,
       "price": 500,
-      "img": "../images/items/armors/a2",
+
+      "img": "items/armors/a2.png",
+      "type": "armor",
+
       "indx": 1
     },
     {
@@ -52,7 +85,9 @@
       "name": "Full armor",
       "added_power": 30,
       "price": 1000,
-      "img": "../images/items/armors/a3",
+      "img": "items/armors/a3.png",
+      "type": "armor",
+
       "indx": 2
     },
     {
@@ -60,7 +95,10 @@
       "name": "Heavy armor",
       "added_power": 50,
       "price": 5000,
-      "img": "../images/items/armors/a4",
+
+      "img": "items/armors/a4.png",
+      "type": "armor",
+
       "indx": 3
     },
     {
@@ -68,7 +106,10 @@
       "name": "Short sword",
       "added_power": 2,
       "price": 100,
-      "img": "../images/items/swords/s1",
+
+      "img": "items/swords/s1.png",
+      "type": "sword",
+
       "indx": 4
     },
     {
@@ -76,7 +117,9 @@
       "name": "Gladius",
       "added_power": 5,
       "price": 200,
-      "img": "../images/items/swords/s2",
+      "img": "items/swords/s2.png",
+      "type": "sword",
+
       "indx": 5
     },
     {
@@ -84,7 +127,10 @@
       "name": "Two-handed sword",
       "added_power": 8,
       "price": 500,
-      "img": "../images/items/swords/s3",
+
+      "img": "items/swords/s3.png",
+      "type": "sword",
+
       "indx": 6
     },
     {
@@ -92,7 +138,9 @@
       "name": "Greatsword",
       "added_power": 10,
       "price": 1000,
-      "img": "../images/items/swords/s4",
+      "img": "items/swords/s4.png",
+      "type": "sword",
+
       "indx": 7
     },
     {
@@ -100,7 +148,10 @@
       "name": "Ligth boots",
       "added_power": 2,
       "price": 20,
-      "img": "../images/items/boots/b1",
+
+      "img": "items/boots/b1.png",
+      "type": "boots",
+
       "indx": 8
     },
     {
@@ -108,7 +159,9 @@
       "name": "Leather boots",
       "added_power": 5,
       "price": 100,
-      "img": "../images/items/boots/b2",
+      "img": "items/boots/b2.png",
+      "type": "boots",
+
       "indx": 9
     },
     {
@@ -116,7 +169,10 @@
       "name": "Chainmail boots",
       "added_power": 10,
       "price": 200,
-      "img": "../images/items/boots/b3",
+
+      "img": "items/boots/b3.png",
+      "type": "boots",
+
       "indx": 10
     },
     {
@@ -124,7 +180,9 @@
       "name": "Full metal boots",
       "added_power": 15,
       "price": 500,
-      "img": "../images/items/boots/b4",
+      "img": "items/boots/b4.png",
+      "type": "boots",
+
       "indx": 11
     }
   ],

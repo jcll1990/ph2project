@@ -1,0 +1,131 @@
+/* CSS for the container that holds the card and shop elements */
+.player-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr; /* Two equal columns for the card and shop */
+  gap: 0px; /* Adjust the gap as needed */
+}
+
+/* CSS for the card container */
+.card {
+  width: 100%; /* Adjust the width to take the full column width */
+  max-width: 300px; /* Limit the maximum width of the card */
+  height: 100%; /* Make the card take the full height of the container */
+  border: 2px solid black; /* Black outline */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Hide any overflowing content */
+  position: relative;
+  transition: background-color 0.3s ease; /* Smooth background color transition on hover */
+}
+
+/* Define the background image for the card */
+.card::before {
+  content: "";
+  background-image: url('../components/subApp/images/maps/bg.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1; /* Place the background behind the content */
+}
+
+/* Style the content inside the card */
+.card-content {
+  padding: 20px; /* Adjust the padding as needed */
+  color: #333; /* Text color */
+}
+
+/* Add a hover effect to make the card lighter */
+.card:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Adjust the opacity/color as needed */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+/* CSS for the player stats */
+.player-stats {
+  text-transform: uppercase;
+  position: absolute;
+  top: 20px; /* Adjust the top position as needed */
+  right: 20px; /* Adjust the right position as needed */
+  color: white; /* Font color */
+  text-align: right; /* Align text to the right */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px; /* Adjust font size as needed */
+  z-index: 1; /* Place the stats above the background */
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* Add a black outline */
+}
+
+/* CSS for the shop card */
+.shop-card {
+  width: 100%; /* Adjust the width to take the full column width */
+}
+
+/* CSS for the shop items as cards */
+.shop-column {
+  display: flex; /* Display items in a row */
+  align-items: center; /* Center items vertically */
+}
+
+.shop-item {
+  width: 100px; /* Set the width to 100px */
+  margin-right: 10px; /* Adjust the margin to move items closer */
+  position: relative; /* Set the position to relative for absolute positioning of text */
+}
+
+/* Add a semi-transparent overlay on hover */
+.shop-item p:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 6, 6, 0.3); /* Adjust the opacity/color as needed */
+  z-index: 1; /* Overlay on top of the image */
+}
+
+/* Style the image inside the shop items */
+.shop-item img {
+  width: 100%; /* Make the image fill the card width */
+  height: 150px; /* Set the image height to 100px */
+  display: block; /* Remove any extra space below the image */
+  z-index: 0; /* Place the image below the overlay */
+}
+
+/* Style the text content on top of the image */
+.shop-item p {
+  font-size: x-small;
+  position: absolute; /* Position text absolutely on top of the image */
+  top: 60%; /* Align text to the bottom of the shop item */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center text horizontally */
+  background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent background */
+  color: white; /* Text color */
+  padding: 10x; /* Adjust the padding as needed */
+  text-align: center; /* Center-align text */
+  width: 100%; /* Make text span the full width of the shop item */
+  box-sizing: border-box; /* Include padding in the width */
+  z-index: 2; /* Place the text on top of the overlay */
+}
+
+
+
+/* Style for buttons */
+button {
+  background-color: black; /* Set the button background color to black */
+  color: white; /* Set the text color to white */
+  border: none; /* Remove the border */
+  margin-left: 0px;
+  width: 100px;
+  padding: 5px 0px; /* Adjust the padding to make the button smaller */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background color and text color */
+}
+
+/* Hover effect for buttons */
+button:hover {
+  background-color: #eeeeee; /* Change background color on hover */
+  color: rgb(214, 16, 16); /* Change text color on hover */
+}
