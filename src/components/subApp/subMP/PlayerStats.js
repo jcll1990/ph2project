@@ -7,6 +7,11 @@ export default function PlayerStats({
   playerSpeed,
   playerDMG,
   playerMoney,
+  setPlayerHP,
+  setPlayerSpeed,
+  setPlayerDMG,
+  setPlayerMoney,
+  updatePlayerData, // Rename this parameter to avoid conflict
 }) {
   const champImg = {
     width: "200px",
@@ -65,8 +70,51 @@ export default function PlayerStats({
 
   // Function to handle the "BUY" button click for a specific type
   const handleBuyItem = (type) => {
-    // You can implement the logic for buying items here
-    console.log(`Buying ${type}`);
+    // Find the selected item based on the type
+    const selectedItem = filterShopItems(type)[displayedItems[type]];
+
+    // Check if the player has enough money to buy the item
+    if (playerMoney >= selectedItem.price) {
+      // Deduct the item price from player's money
+      const updatedMoney = playerMoney - selectedItem.price;
+      setPlayerMoney(updatedMoney);
+
+      // Update the player's stats based on the item type
+      switch (type) {
+        case "armor":
+          // Update player's HP
+          const updatedHP = playerHP + selectedItem.added_power;
+          setPlayerHP(updatedHP);
+          break;
+        case "sword":
+          // Update player's DMG
+          const updatedDMG = playerDMG + selectedItem.added_power;
+          setPlayerDMG(updatedDMG);
+          break;
+        case "boots":
+          // Update player's Speed
+          const updatedSpeed = playerSpeed + selectedItem.added_power;
+          setPlayerSpeed(updatedSpeed);
+          break;
+        default:
+          break;
+      }
+
+      // Create an updated player object
+      const updatedPlayer = {
+        playerHP,
+        playerSpeed,
+        playerDMG,
+        playerMoney: updatedMoney,
+        // ... (other player properties)
+      };
+
+      // Call the updatePlayerData function to send the updated data to the server
+      updatePlayerData(updatedPlayer);
+    } else {
+      // Handle insufficient funds (you can show a message to the user)
+      console.log("Insufficient funds to buy this item.");
+    }
   };
 
   return (

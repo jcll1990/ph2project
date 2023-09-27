@@ -14,7 +14,8 @@ function MainPage({
     setPlayerHP,
     setPlayerSpeed,
     setPlayerDMG,
-    setPlayerMoney
+    setPlayerMoney,
+    updatePlayerData
 }) {
 
 
@@ -22,10 +23,16 @@ function MainPage({
     return (
     <>
     <PlayerStats
-            playerHP = {playerHP}
-            playerSpeed = {playerSpeed}
-            playerDMG = {playerDMG}
-            playerMoney = {playerMoney}
+ player={player}
+ playerHP={playerHP}
+ playerSpeed={playerSpeed}
+ playerDMG={playerDMG}
+ playerMoney={playerMoney}
+ setPlayerHP={setPlayerHP}
+ setPlayerSpeed={setPlayerSpeed}
+ setPlayerDMG={setPlayerDMG}
+ setPlayerMoney={setPlayerMoney}
+ updatePlayerData={updatePlayerData}
     />
 
     <PlayerUpgrades
