@@ -1,10 +1,20 @@
 import React from "react";
 import { useState,} from "react";
+import { useHistory } from "react-router-dom";
 
-function Login({setPlayer, allData, player, logPlayer , setLogPlayer}) {
+function Login({allData, setPlayer}) {
+
+  const history = useHistory();
 
   const [showCA, setShowCA] = useState (false)
   const [showCP, setShowCP] = useState (false)
+
+
+  
+  function startmp() {
+
+    history.push("/mainpage");
+  }
  
 //LOGING 
 
@@ -17,10 +27,6 @@ function Login({setPlayer, allData, player, logPlayer , setLogPlayer}) {
     const logEmail = event.target.loginEmail.value;
     const logPass = event.target.loginPass.value;
 
-    console.log(allData)
-    console.log(logEmail)
-    console.log(logPass)
-
     let userFound = false;
 
     if (logEmail.trim() !== "") {
@@ -28,9 +34,9 @@ function Login({setPlayer, allData, player, logPlayer , setLogPlayer}) {
 
         for (let i = 0; i < allData.length; i++) {
           if (allData[i].user_email === logEmail) {
-            setLogPlayer(allData[i])
+            setPlayer(allData[i])
             userFound = true  
-            login (logPlayer)
+            login (allData[i])
             break;
           }
         }    
@@ -44,7 +50,8 @@ function Login({setPlayer, allData, player, logPlayer , setLogPlayer}) {
       } else if (a.password === logPass) {
         alert("Logged in")
         setPlayer(a)
-        console.log(player)
+       startmp() 
+
       } else {
         alert("Wrong Password")
       }
@@ -92,7 +99,20 @@ function Login({setPlayer, allData, player, logPlayer , setLogPlayer}) {
             user_name_quest: false,
             password: newPass,
             user_photo: "",
-            user_upgrades: [],
+            user_upgrades: [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
             user_money : 0,
             user_hp : 10,
             user_speed : 1,

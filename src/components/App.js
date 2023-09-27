@@ -3,11 +3,21 @@ import React from "react";
 import Login from "./subApp/Login.js";
 import MainPage from "./subApp/MainPage.js";
 import GamePage from "./subApp/GamePage.js";
+import Home from "./subApp/Home.js";
 
 
 import { useState, useEffect} from "react";
 
+import {Switch, Route, Routes } from 'react-router-dom';
+
 function App() {
+
+  const [player, setPlayer] = useState({})
+  const [allData, setAllData] = useState([])
+  const [launch, setLaunch] = useState(false)
+
+let a = {}
+
 
   useEffect(() => {
     fetch(`http://localhost:3000/users`)
@@ -17,67 +27,51 @@ function App() {
       });
   }, []);
 
-
-  const [player,setPlayer] =useState({})
-  const [allData, setAllData] = useState([])
-  const [logPlayer, setLogPlayer] = useState([])
-
-  const [playerHP, setPlayerHP] = useState(1)
-  const [playerSpeed, setPlayerSpeed] = useState(1)
-  const [playerDMG, setPlayerDMG] = useState(1) 
-  const [playerMoney, setPlayerMoney] = useState(0) 
-
-
-  useEffect(() => {
-
-    setPlayerHP(player.user_hp)
-    setPlayerSpeed(player.user_speed)
-    setPlayerDMG(player.user_dmg)
-    setPlayerMoney(player.user_money)
-
-  }, [player]);
-
-
-
   return (
+  <div>
+    <Switch>
 
-    
-      <div className="App">
-        
+      <Route exact path="/">
+        <Home
+
+        />
+      </Route>
+      
+      <Route exact path="/login">
         <Login
             allData = {allData}
             setPlayer = {setPlayer}
-            player = {player}
-            logPlayer = {logPlayer}
-            setLogPlayer = {setLogPlayer}
 
         />
+      </Route>
 
+      <Route exact path="/mainpage">
         <MainPage
             player = {player}
-
-            playerHP = {playerHP}
-            playerSpeed = {playerSpeed}
-            playerDMG = {playerDMG}
-            playerMoney = {playerMoney}
-
-            setPlayerHP={setPlayerHP}
-            setPlayerSpeed = {setPlayerSpeed}
-            setPlayerDMG = {setPlayerSpeed}
-            setPlayerMoney = {setPlayerSpeed}
-            
+            setPlayer = {setPlayer}
+            launch= {launch}
+            setLaunch={setLaunch}            
         />
+      </Route>
 
-
-        <GamePage
-            playerHP={playerHP}
-            playerSpeed={playerSpeed}
-            playerDMG={playerDMG}
-            player={player}
-            setPlayerHP = {setPlayerHP}
+      <Route exact path="/gamepage">
+        
+          {launch === true && Object.keys(player).length !== 0 ? 
+          
+          (
+            <GamePage 
+              player={player}
+              setLaunch={setLaunch}
             />
- 
-      </div>
+          ) : (
+            <img src="/load.jpg" alt="Loading" />
+          )}
+        
+      </Route>
+
+    </Switch>
+    </div>
+      
   );
 }
 export default App;

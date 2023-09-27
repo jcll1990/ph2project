@@ -7,7 +7,20 @@
       "user_name_quest": false,
       "password": "123",
       "user_photo": "",
-      "user_upgrades": [0,0,0,0,0,0,0,0,0,0,0,0],
+      "user_upgrades": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
       "user_money": 0,
       "user_hp": 10,
       "user_speed": 10,
@@ -24,7 +37,7 @@
       "added_power": 10,
       "price": 200,
       "img": "../images/items/armors/a1",
-      "indx":0
+      "indx": 0
     },
     {
       "id": 2,
@@ -32,23 +45,23 @@
       "added_power": 20,
       "price": 500,
       "img": "../images/items/armors/a2",
-      "indx":1
+      "indx": 1
     },
     {
       "id": 3,
-      "name":  "Full armor",
+      "name": "Full armor",
       "added_power": 30,
       "price": 1000,
       "img": "../images/items/armors/a3",
-      "indx":2
+      "indx": 2
     },
     {
       "id": 4,
-      "name":  "Heavy armor",
+      "name": "Heavy armor",
       "added_power": 50,
       "price": 5000,
       "img": "../images/items/armors/a4",
-      "indx":3
+      "indx": 3
     },
     {
       "id": 5,
@@ -56,7 +69,7 @@
       "added_power": 2,
       "price": 100,
       "img": "../images/items/swords/s1",
-      "indx":4
+      "indx": 4
     },
     {
       "id": 6,
@@ -64,7 +77,7 @@
       "added_power": 5,
       "price": 200,
       "img": "../images/items/swords/s2",
-      "indx":5
+      "indx": 5
     },
     {
       "id": 7,
@@ -72,7 +85,7 @@
       "added_power": 8,
       "price": 500,
       "img": "../images/items/swords/s3",
-      "indx":6
+      "indx": 6
     },
     {
       "id": 8,
@@ -80,7 +93,7 @@
       "added_power": 10,
       "price": 1000,
       "img": "../images/items/swords/s4",
-      "indx":7
+      "indx": 7
     },
     {
       "id": 9,
@@ -88,7 +101,7 @@
       "added_power": 2,
       "price": 20,
       "img": "../images/items/boots/b1",
-      "indx":8
+      "indx": 8
     },
     {
       "id": 10,
@@ -96,23 +109,23 @@
       "added_power": 5,
       "price": 100,
       "img": "../images/items/boots/b2",
-      "indx":9
+      "indx": 9
     },
     {
       "id": 11,
       "name": "Chainmail boots",
       "added_power": 10,
       "price": 200,
-      "img":  "../images/items/boots/b3",
-      "indx":10
+      "img": "../images/items/boots/b3",
+      "indx": 10
     },
     {
       "id": 12,
-      "name":  "Full metal boots",
+      "name": "Full metal boots",
       "added_power": 15,
       "price": 500,
-      "img":  "../images/items/boots/b4",
-      "indx":11
+      "img": "../images/items/boots/b4",
+      "indx": 11
     }
   ],
   "levels": [

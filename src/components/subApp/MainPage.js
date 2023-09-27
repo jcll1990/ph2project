@@ -6,14 +6,9 @@ import GameLauncher from "./subMP/GameLauncher";
 
 function MainPage({ 
     player,
-    playerHP,
-    playerSpeed,
-    playerDMG,
-    playerMoney, 
-    setPlayerHP,
-    setPlayerSpeed,
-    setPlayerDMG,
-    setPlayerMoney
+    setPlayer,
+    setLaunch,
+    launch
 }) {
 
 
@@ -22,10 +17,10 @@ function MainPage({
     <>
 
     <PlayerStats
-            playerHP = {playerHP}
-            playerSpeed = {playerSpeed}
-            playerDMG = {playerDMG}
-            playerMoney = {playerMoney}
+            playerHP = {player.user_hp}
+            playerSpeed = {player.user_speed}
+            playerDMG = {player.user_dmg}
+            playerMoney = {player.user_money}
     />
 
     <PlayerUpgrades
@@ -36,6 +31,8 @@ function MainPage({
     />
 
     <GameLauncher
+    setLaunch={setLaunch}
+    launch={launch}
     />
 
     </>
