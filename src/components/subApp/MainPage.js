@@ -16,6 +16,9 @@ function MainPage({
     setPlayerDMG,
     setPlayerMoney,
     updatePlayerData
+    setPlayer,
+    setLaunch,
+    launch
 }) {
 
 
@@ -23,6 +26,7 @@ function MainPage({
     return (
     <>
     <PlayerStats
+
  player={player}
  playerHP={playerHP}
  playerSpeed={playerSpeed}
@@ -33,6 +37,12 @@ function MainPage({
  setPlayerDMG={setPlayerDMG}
  setPlayerMoney={setPlayerMoney}
  updatePlayerData={updatePlayerData}
+
+            playerHP = {player.user_hp}
+            playerSpeed = {player.user_speed}
+            playerDMG = {player.user_dmg}
+            playerMoney = {player.user_money}
+
     />
 
     <PlayerUpgrades
@@ -43,6 +53,8 @@ function MainPage({
     />
 
     <GameLauncher
+    setLaunch={setLaunch}
+    launch={launch}
     />
 
     </>

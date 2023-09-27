@@ -1,44 +1,24 @@
 import React, { useEffect, useState, } from "react";
 import "../../css/GamePage.css";
 
-
-
-import map from "./images/maps/Best map.png"
-import map2 from "./images/maps/mapasa.png"
-
-
-import champ1attackl from "./images/champ1/champ1attackl.gif"
-import champ1attackr from "./images/champ1/champ1attackr.gif"
-import champ1runr from "./images/champ1/champ1runr.gif"
-import champ1runl from "./images/champ1/champ1runl.gif"
-
 import champ2attackl from "./images/champ2/champ2attackl.gif"
 import champ2attackr from "./images/champ2/champ2attackr.gif"
 import champ2runr from "./images/champ2/champ2runr.gif"
 import champ2runl from "./images/champ2/champ2runl.gif"
 
-import champ3attackl from "./images/champ3/camp3attackl.gif"
-import champ3attackr from "./images/champ3/camp3attackr.gif"
-import champ3runr from "./images/champ3/champ3runr.gif"
-import champ3runl from "./images/champ3/champ3runl.gif"
-
 import demon1run from "./images/demon1/demon1run.gif"
 import demon1attack from "./images/demon1/demon1attack.gif"
-import demon2run from "./images/demon2/demon2run.gif"
-import demon2attack from "./images/demon2/demon2attack.gif"
+
 
 function GamePage() {
 
-const [hit, setHit] = useState(false)
 
-/////PLAYER VARIABLES
-
-const [playerImag, setPlayerImg] = useState(3)
 const [playerHP, setPlayerHP] = useState(10)
 const [playerSpeed, setPlayerSpeed] = useState(20)
 const [playerDMG, setPlayerDMG] = useState(1)
 
-const [imageToUse, setImageToUse] = useState(champ3runr)
+const [hit, setHit] = useState(false)
+const [imageToUse, setImageToUse] = useState(champ2runr)
 
 
 const [attack, setAttack] = useState(false)
@@ -69,18 +49,10 @@ const [trigger, setTrigger] = useState(false);
 
 ////////////DIVS AND SHIT
 
-  const divMap = {
-    width: "1500px",
-    height: "800px",
-    position: "relative",
-    border: "10px solid black",
-    backgroundImage: `url(${map})`, // Set the background image
-    backgroundSize: "cover", // Adjust the background size as needed
-  };
 
   const playerImg = {
-    width: "80px",
-    height: "80px",
+    width: "100px",
+    height: "120px",
     position: "absolute",
     top: `${Math.max(0, Math.min(7200, positionY))}px`,
     left: `${Math.max(0, Math.min(1450, positionX))}px`,
@@ -121,7 +93,7 @@ useEffect(() => {
         case "ArrowLeft":
           if (!isMovingLeft) {
             setPositionX((prevPositionX) => prevPositionX - playerSpeed);
-            setImageToUse(champ3runl);
+            setImageToUse(champ2runl);
             setIsMovingLeft(true);
             setAttack(false);
           }
@@ -129,7 +101,7 @@ useEffect(() => {
         case "ArrowRight":
           if (!isMovingRight) {
             setPositionX((prevPositionX) => prevPositionX + playerSpeed);
-            setImageToUse(champ3runr);
+            setImageToUse(champ2runr);
             setIsMovingRight(true);
             setAttack(false);
           }
@@ -138,7 +110,7 @@ useEffect(() => {
           setAttack(true);
 
 
-          if (imageToUse == champ3runl) { setImageToUse(champ3attackl)} else {setImageToUse(champ3attackr)}
+          if (imageToUse == champ2runl) { setImageToUse(champ2attackl)} else {setImageToUse(champ2attackr)}
 
           
           break;
@@ -186,10 +158,6 @@ useEffect(() => {
   };
 }, [isMovingUp, isMovingDown, isMovingLeft, isMovingRight, attack]);
 
-
-
-
-
 ////////////////////////////////////////////ENEMY THINGS
 /////////////////////////////////////////////////////////////////////////////////////
 //////////ENEMY move
@@ -228,7 +196,6 @@ useEffect(() => {
       clearInterval(intervalId);
     };
   }, []); 
-  
 
 ////////////////ENEMY ATTACK
 

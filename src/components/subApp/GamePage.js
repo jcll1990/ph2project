@@ -1,10 +1,6 @@
 import React, { useEffect, useState, } from "react";
 import "../../css/GamePage.css";
 
-
-
-
-
 import champ2attackl from "./images/champ2/champ2attackl.gif"
 import champ2attackr from "./images/champ2/champ2attackr.gif"
 import champ2runr from "./images/champ2/champ2runr.gif"
@@ -13,10 +9,20 @@ import champ2runl from "./images/champ2/champ2runl.gif"
 import demon1run from "./images/demon1/demon1run.gif"
 import demon1attack from "./images/demon1/demon1attack.gif"
 
+import { useHistory } from "react-router-dom";
 
-function GamePage({playerHP, playerSpeed, playerDMG, setPlayerHP}) {
 
-   
+function GamePage({player,setLaunch}) {
+
+const history = useHistory();
+const [playerHP, setPlayerHP] = useState(player.user_hp)
+
+let playerSpeed = player.user_speed
+
+let playerDMG = player.user_dmg
+
+
+
 
 const [hit, setHit] = useState(false)
 const [imageToUse, setImageToUse] = useState(champ2runr)
@@ -34,7 +40,7 @@ const [isMovingRight, setIsMovingRight] = useState(false);
 
 ///////////ENEMY VARIABLES
 
-const [enemySpeed, setEnemySpeed] = useState(0)
+const [enemySpeed, setEnemySpeed] = useState(5)
 const [enemyHP, setEnemyHP] = useState(5)
 
 
@@ -67,6 +73,19 @@ const [trigger, setTrigger] = useState(false);
   };
 
 
+  function endgame() {
+
+    if (enemyHP === 0) {
+      alert("You won!")
+    } else {
+      alert("You died")
+    }
+
+    setLaunch(false)
+    history.push("/mainpage");
+}
+
+
 
 ////////////////////////////////////////////PLAYER THINGS
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -80,7 +99,6 @@ useEffect(() => {
         case "ArrowUp":
           if (!isMovingUp) {
             setPositionY((prevPositionY) => prevPositionY - 10 - playerSpeed);
-
             setIsMovingUp(true);
             setAttack(false);
           }
@@ -88,7 +106,6 @@ useEffect(() => {
         case "ArrowDown":
           if (!isMovingDown) {
             setPositionY((prevPositionY) => prevPositionY + 10 + playerSpeed);
-
             setIsMovingDown(true);
             setAttack(false);
           }
@@ -161,10 +178,6 @@ useEffect(() => {
   };
 }, [isMovingUp, isMovingDown, isMovingLeft, isMovingRight, attack]);
 
-
-
-
-
 ////////////////////////////////////////////ENEMY THINGS
 /////////////////////////////////////////////////////////////////////////////////////
 //////////ENEMY move
@@ -199,12 +212,9 @@ useEffect(() => {
 
       setTrigger((prevTrigger) => !prevTrigger);
     }, 300); 
-    return () => {
-      clearInterval(intervalId);
-    };
+
   }, []); 
   
-
 ////////////////ENEMY ATTACK
 
 useEffect(() => {
@@ -219,7 +229,7 @@ useEffect(() => {
   toggleAttack();
 
   // Set up an interval to toggle the enemyAttack state every 3000 milliseconds (3 seconds)
-  const intervalId = setInterval(toggleAttack, 1000);
+  const intervalId = setInterval(toggleAttack, 2000);
 
   // Clean up the interval when the component unmounts
   return () => {
@@ -234,7 +244,7 @@ useEffect(() => {
 ////////////////////////////////////// HIT
 
 useEffect(() => {
-  if (((enemyPositionX - 50) <= positionX) && (positionX <= (enemyPositionX + 50)) && ((enemyPositionY - 50) <= positionY) && (positionY <= (enemyPositionY + 50))) {
+  if (((enemyPositionX - 30) <= positionX) && (positionX <= (enemyPositionX + 30)) && ((enemyPositionY - 30) <= positionY) && (positionY <= (enemyPositionY + 30))) {
     setHit(true);
   } else {
     setHit(false);
@@ -243,7 +253,10 @@ useEffect(() => {
 
 useEffect(() => {
   if (enemyAttack && hit) {
-    setPlayerHP((prevPlayerHP) => prevPlayerHP - 1);
+    setPlayerHP((prevPlayerHP) => prevPlayerHP - 1)
+    if(playerHP === 0) {
+      endgame ()
+    }
 
   }
 
@@ -252,6 +265,9 @@ useEffect(() => {
 useEffect(() => {
   if (attack && hit) {
     setEnemyHP((prevEnemyHP) => prevEnemyHP - playerDMG);
+    if(enemyHP === 0) {
+      endgame ()
+    }
 
   }
 
@@ -267,9 +283,7 @@ useEffect(() => {
   return (
 
     <div>
-          <>
-    <button onClick={() => test()}>test</button>
-    </>
+          
     <div className="map-container">
         <img 
             src={imageToUse}

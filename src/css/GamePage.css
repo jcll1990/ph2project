@@ -1,11 +1,11 @@
 /* YourComponent.css */
 
 .map-container {
-    width: 1500px;
+    width: 1600px;
     height: 800px;
     position: relative;
     border: 10px solid black;
-    background: white;
+    background-image: url("../images/maps/Best map.png");
     background-size: cover; /* Adjust as needed */
   }
   
