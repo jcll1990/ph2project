@@ -9,8 +9,14 @@ function GameLauncher({
 
   const history = useHistory();
 
+  function run () {
+    setLaunch(true);
+    history.push("/gamepage");
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
+
 
     const selectedLevelId = event.target.levelSelect.value;
 
@@ -27,6 +33,8 @@ function GameLauncher({
   }
 
   return (
+<>
+<button onClick={() => run()}>START TEST5</button>
     <form onSubmit={handleSubmit}>
       <label>Select a level:</label>
 
@@ -40,6 +48,8 @@ function GameLauncher({
       </select>
       <button type="submit">Submit</button>
     </form>
+
+    </>
   );
 }
 

@@ -53,8 +53,8 @@ const [trigger, setTrigger] = useState(false);
 
 
 
-const [enemySpeed, setEnemySpeed] = useState(5)
-const [enemyHP, setEnemyHP] = useState(5)
+const [enemySpeed, setEnemySpeed] = useState(15)
+const [enemyHP, setEnemyHP] = useState(15)
 const [enemy1, setEnemy1] = useState(true)
 
 const [enemyDMG, setEnemyDMG] = useState(1)
@@ -64,8 +64,8 @@ const [enemyPositionY, setEnemyPositionY] = useState(300);
 
 
 
-const [enemySpeed2, setEnemySpeed2] = useState(5)
-const [enemyHP2, setEnemyHP2] = useState(5)
+const [enemySpeed2, setEnemySpeed2] = useState(15)
+const [enemyHP2, setEnemyHP2] = useState(15)
 const [enemy2, setEnemy2] = useState(true)
 
 const [enemyDMG2, setEnemyDMG2] = useState(1)
@@ -74,8 +74,8 @@ const [enemyPositionX2, setEnemyPositionX2] = useState(600);
 const [enemyPositionY2, setEnemyPositionY2] = useState(300); 
 
 
-const [enemySpeed3, setEnemySpeed3] = useState(5)
-const [enemyHP3, setEnemyHP3] = useState(5)
+const [enemySpeed3, setEnemySpeed3] = useState(15)
+const [enemyHP3, setEnemyHP3] = useState(15)
 const [enemy3, setEnemy3] = useState(true)
 
 const [enemyDMG3, setEnemyDMG3] = useState(1)
@@ -85,8 +85,8 @@ const [enemyPositionY3, setEnemyPositionY3] = useState(400);
 
 
 
-const [enemySpeed4, setEnemySpeed4] = useState(5)
-const [enemyHP4, setEnemyHP4] = useState(5)
+const [enemySpeed4, setEnemySpeed4] = useState(15)
+const [enemyHP4, setEnemyHP4] = useState(15)
 const [enemy4, setEnemy4] = useState(true)
 
 const [enemyDMG4, setEnemyDMG4] = useState(1)
@@ -95,8 +95,8 @@ const [enemyPositionX4, setEnemyPositionX4] = useState(450);
 const [enemyPositionY4, setEnemyPositionY4] = useState(300); 
 
 
-const [enemySpeed5, setEnemySpeed5] = useState(5)
-const [enemyHP5, setEnemyHP5] = useState(5)
+const [enemySpeed5, setEnemySpeed5] = useState(15)
+const [enemyHP5, setEnemyHP5] = useState(15)
 const [enemy5, setEnemy5] = useState(true)
 
 const [enemyDMG5, setEnemyDMG5] = useState(1)
@@ -179,25 +179,24 @@ const [enemyPositionY5, setEnemyPositionY5] = useState(300);
           .then((resp) => resp.json())
           .then((data) => {
               setPlayer(data);
-              
-              goback ()
               setFlag(false)
+              goback ()
+             
           });
       })
    
     } else if 
       (playerHP <= 0) {
         setLaunch(false)
-        history.push("/mainpage");
-        alert("You died")
+        history.push("/youdied");
+        
     }
     
 }
 
 function goback () {
   setLaunch(false)
-  history.push("/mainpage");
-  alert("You won")
+  history.push("/yousurvived");
   
 }
 
@@ -821,6 +820,9 @@ if (attack && hit5) {
       <h1>PLAYER HP: {playerHP}</h1>
       <h1>DEMON HP: {enemyHP}</h1>
       <h1>DEMON2 HP: {enemyHP2}</h1>
+      <h1>DEMON3 HP: {enemyHP3}</h1>
+      <h1>DEMON4 HP: {enemyHP4}</h1>
+      <h1>DEMON5 HP: {enemyHP5}</h1>
       </>
       </div>
     </div>

@@ -5,6 +5,8 @@ import Home from "./subApp/Home.js";
 import Login from "./subApp/Login.js";
 import MainPage from "./subApp/MainPage.js";
 import GamePage from "./subApp/GamePage.js";
+import YouDiedPage from "./subApp/YouDiedPage.js";
+import YouSurvivedPage from "./subApp/YouSurvivedPage.js"
 
 import {Switch, Route} from 'react-router-dom';
 
@@ -95,6 +97,18 @@ function App() {
             <img src="/load.jpg" alt="Loading" />
           )}
         
+      </Route>
+
+      <Route exact path="/youdied">
+        <YouDiedPage
+
+        />
+      </Route>
+
+      <Route exact path="/yousurvived">
+        <YouSurvivedPage
+
+        />
       </Route>
 
     </Switch>
