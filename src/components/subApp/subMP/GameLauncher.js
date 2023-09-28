@@ -9,22 +9,20 @@ function GameLauncher({
 
   const history = useHistory();
 
-  function run () {
-    setLaunch(true);
-    history.push("/gamepage");
-  }
+
 
   function handleSubmit(event) {
     event.preventDefault();
 
 
-    const selectedLevelId = event.target.levelSelect.value;
+    const thelvlnumb = event.target.levelSelect.value;
 
-    const selectedLevel = allLevels.find(level => level.id === selectedLevelId);
-
-
-    if (selectedLevel) {
-      setSelectedLevel(selectedLevel);
+    const thelvl = allLevels.find(level => level.id == thelvlnumb);
+    console.log(allLevels)
+    console.log(thelvlnumb)
+    console.log(thelvl)
+    if (thelvl) {
+      setSelectedLevel(thelvl);
       setLaunch(true);
       history.push("/gamepage");
     } else {
@@ -34,7 +32,7 @@ function GameLauncher({
 
   return (
 <>
-<button onClick={() => run()}>START TEST5</button>
+
     <form onSubmit={handleSubmit}>
       <label>Select a level:</label>
 

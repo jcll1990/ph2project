@@ -85,13 +85,14 @@ function App() {
 
       <Route exact path="/gamepage">
         
-          {launch === true && Object.keys(player).length !== 0 ? 
+          {launch === true && Object.keys(player).length !== 0  && Object.keys(selectedlevel).length !== 0? 
           
           (
             <GamePage 
               player={player}
               setPlayer = {setPlayer}
               setLaunch={setLaunch}
+              selectedlevel = {selectedlevel}
             />
           ) : (
             <img src="/load.jpg" alt="Loading" />

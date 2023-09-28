@@ -16,6 +16,7 @@ function GamePage({
   player,
   setPlayer,
   setLaunch,
+  selectedlevel
   }) {
 
 const history = useHistory();
@@ -27,7 +28,7 @@ let playerDMG = player.dmg
 
   
 const [hit, setHit] = useState(false)
-const [price, setPrice] = useState(100)
+const [price, setPrice] = useState(selectedlevel.price)
 const [flag, setFlag] = useState(true)
 
 const [hit2, setHit2] = useState(false)
@@ -38,8 +39,8 @@ const [hit5, setHit5] = useState(false)
 const [imageToUse, setImageToUse] = useState(champ2runr)
 
 const [attack, setAttack] = useState(false)
-const [positionX, setPositionX] = useState(700);
-const [positionY, setPositionY] = useState(600);
+const [positionX, setPositionX] = useState(750);
+const [positionY, setPositionY] = useState(350);
 const [isMovingUp, setIsMovingUp] = useState(false);
 const [isMovingDown, setIsMovingDown] = useState(false);
 const [isMovingLeft, setIsMovingLeft] = useState(false);
@@ -53,56 +54,57 @@ const [trigger, setTrigger] = useState(false);
 
 
 
-const [enemySpeed, setEnemySpeed] = useState(15)
-const [enemyHP, setEnemyHP] = useState(15)
-const [enemy1, setEnemy1] = useState(true)
+const [enemySpeed, setEnemySpeed] = useState(selectedlevel.es)
+const [enemyHP, setEnemyHP] = useState(selectedlevel.ehp)
+const [enemy1, setEnemy1] = useState(selectedlevel.e1)
 
-const [enemyDMG, setEnemyDMG] = useState(1)
+const [enemyDMG, setEnemyDMG] = useState(selectedlevel.ed)
 const [enemyAttack, setEnemyAttack] = useState(false)
-const [enemyPositionX, setEnemyPositionX] = useState(300); 
-const [enemyPositionY, setEnemyPositionY] = useState(300); 
+const [enemyPositionX, setEnemyPositionX] = useState(200); 
+const [enemyPositionY, setEnemyPositionY] = useState(50); 
 
 
 
-const [enemySpeed2, setEnemySpeed2] = useState(15)
-const [enemyHP2, setEnemyHP2] = useState(15)
-const [enemy2, setEnemy2] = useState(true)
+const [enemySpeed2, setEnemySpeed2] = useState(selectedlevel.es)
+const [enemyHP2, setEnemyHP2] = useState(selectedlevel.ehp)
+const [enemy2, setEnemy2] = useState(selectedlevel.e2)
 
-const [enemyDMG2, setEnemyDMG2] = useState(1)
+const [enemyDMG2, setEnemyDMG2] = useState(selectedlevel.ed)
 const [enemyAttack2, setEnemyAttack2] = useState(false)
-const [enemyPositionX2, setEnemyPositionX2] = useState(600); 
-const [enemyPositionY2, setEnemyPositionY2] = useState(300); 
+const [enemyPositionX2, setEnemyPositionX2] = useState(1200); 
+const [enemyPositionY2, setEnemyPositionY2] = useState(50); 
 
 
-const [enemySpeed3, setEnemySpeed3] = useState(15)
-const [enemyHP3, setEnemyHP3] = useState(15)
-const [enemy3, setEnemy3] = useState(true)
+const [enemySpeed3, setEnemySpeed3] = useState(selectedlevel.es)
+const [enemyHP3, setEnemyHP3] = useState(selectedlevel.ehp)
+const [enemy3, setEnemy3] = useState(selectedlevel.e3)
 
-const [enemyDMG3, setEnemyDMG3] = useState(1)
+const [enemyDMG3, setEnemyDMG3] = useState(selectedlevel.ed)
 const [enemyAttack3, setEnemyAttack3] = useState(false)
-const [enemyPositionX3, setEnemyPositionX3] = useState(500); 
+const [enemyPositionX3, setEnemyPositionX3] = useState(0); 
 const [enemyPositionY3, setEnemyPositionY3] = useState(400); 
 
 
 
-const [enemySpeed4, setEnemySpeed4] = useState(15)
-const [enemyHP4, setEnemyHP4] = useState(15)
-const [enemy4, setEnemy4] = useState(true)
+const [enemySpeed4, setEnemySpeed4] = useState(selectedlevel.es)
+const [enemyHP4, setEnemyHP4] = useState(selectedlevel.ehp)
+const [enemy4, setEnemy4] = useState(selectedlevel.e4)
 
-const [enemyDMG4, setEnemyDMG4] = useState(1)
+
+const [enemyDMG4, setEnemyDMG4] = useState(selectedlevel.ed)
 const [enemyAttack4, setEnemyAttack4] = useState(false)
-const [enemyPositionX4, setEnemyPositionX4] = useState(450); 
+const [enemyPositionX4, setEnemyPositionX4] = useState(1400); 
 const [enemyPositionY4, setEnemyPositionY4] = useState(300); 
 
 
-const [enemySpeed5, setEnemySpeed5] = useState(15)
-const [enemyHP5, setEnemyHP5] = useState(15)
-const [enemy5, setEnemy5] = useState(true)
+const [enemySpeed5, setEnemySpeed5] = useState(selectedlevel.es)
+const [enemyHP5, setEnemyHP5] = useState(selectedlevel.ehp)
+const [enemy5, setEnemy5] = useState(selectedlevel.e5)
 
-const [enemyDMG5, setEnemyDMG5] = useState(1)
+const [enemyDMG5, setEnemyDMG5] = useState(selectedlevel.ed)
 const [enemyAttack5, setEnemyAttack5] = useState(false)
-const [enemyPositionX5, setEnemyPositionX5] = useState(700); 
-const [enemyPositionY5, setEnemyPositionY5] = useState(300); 
+const [enemyPositionX5, setEnemyPositionX5] = useState(600); 
+const [enemyPositionY5, setEnemyPositionY5] = useState(600); 
 
 
 
@@ -351,7 +353,7 @@ useEffect(() => {
 ////////////////////////////////////// HIT
 
 useEffect(() => {
-  if (((enemyPositionX - 30) <= positionX) && (positionX <= (enemyPositionX + 30)) && ((enemyPositionY - 30) <= positionY) && (positionY <= (enemyPositionY + 30))) {
+  if (((enemyPositionX - 40) <= positionX) && (positionX <= (enemyPositionX + 40)) && ((enemyPositionY - 40) <= positionY) && (positionY <= (enemyPositionY + 40))) {
     setHit(true);
   } else {
     setHit(false);
@@ -372,9 +374,9 @@ useEffect(() => {
 useEffect(() => {
   if (attack && hit) {
     setEnemyHP((prevEnemyHP) => prevEnemyHP - playerDMG);
-    if (enemyHP <= 0) {
+    if (enemyHP <= 1) {
       setEnemy1(false)
-      setEnemyDMG2(0)
+      setEnemyDMG(0)
       endgame()
     }
 
@@ -439,7 +441,7 @@ return () => {
 ////////////////////////////////////// HIT
 
 useEffect(() => {
-if (((enemyPositionX2 - 30) <= positionX) && (positionX <= (enemyPositionX2 + 30)) && ((enemyPositionY2 - 30) <= positionY) && (positionY <= (enemyPositionY2 + 30))) {
+if (((enemyPositionX2 - 40) <= positionX) && (positionX <= (enemyPositionX2 + 40)) && ((enemyPositionY2 - 40) <= positionY) && (positionY <= (enemyPositionY2 + 40))) {
   setHit2(true);
 } else {
   setHit2(false);
@@ -460,7 +462,7 @@ if (enemyAttack2 && hit2) {
 useEffect(() => {
 if (attack && hit2) {
   setEnemyHP2((prevEnemyHP2) => prevEnemyHP2 - playerDMG);
-  if (enemyHP2 <= 0) {
+  if (enemyHP2 <= 1) {
     setEnemy2(false)
     setEnemyDMG2(0)
     endgame()
@@ -526,7 +528,7 @@ return () => {
 ////////////////////////////////////// HIT
 
 useEffect(() => {
-if (((enemyPositionX3 - 30) <= positionX) && (positionX <= (enemyPositionX3 + 30)) && ((enemyPositionY3 - 30) <= positionY) && (positionY <= (enemyPositionY3 + 30))) {
+if (((enemyPositionX3 - 40) <= positionX) && (positionX <= (enemyPositionX3 + 40)) && ((enemyPositionY3 - 40) <= positionY) && (positionY <= (enemyPositionY3 + 40))) {
   setHit3(true);
 } else {
   setHit3(false);
@@ -547,7 +549,7 @@ if (enemyAttack3 && hit3) {
 useEffect(() => {
 if (attack && hit3) {
   setEnemyHP3((prevEnemyHP3) => prevEnemyHP3 - playerDMG);
-  if (enemyHP3 <= 0) {
+  if (enemyHP3 <= 1) {
     setEnemy3(false)
     setEnemyDMG3(0)
     endgame()
@@ -612,7 +614,7 @@ return () => {
 ////////////////////////////////////// HIT
 
 useEffect(() => {
-if (((enemyPositionX4 - 30) <= positionX) && (positionX <= (enemyPositionX4 + 30)) && ((enemyPositionY4 - 30) <= positionY) && (positionY <= (enemyPositionY4 + 30))) {
+if (((enemyPositionX4 - 40) <= positionX) && (positionX <= (enemyPositionX4 + 40)) && ((enemyPositionY4 - 40) <= positionY) && (positionY <= (enemyPositionY4 + 40))) {
   setHit4(true);
 } else {
   setHit4(false);
@@ -633,7 +635,7 @@ if (enemyAttack4 && hit4) {
 useEffect(() => {
 if (attack && hit4) {
   setEnemyHP4((prevEnemyHP4) => prevEnemyHP4 - playerDMG);
-  if (enemyHP4 <= 0) {
+  if (enemyHP4 <= 1) {
     setEnemy4(false)
     setEnemyDMG4(0)
     endgame()
@@ -701,7 +703,7 @@ return () => {
 ////////////////////////////////////// HIT
 
 useEffect(() => {
-if (((enemyPositionX5 - 30) <= positionX) && (positionX <= (enemyPositionX5 + 30)) && ((enemyPositionY5 - 30) <= positionY) && (positionY <= (enemyPositionY5 + 30))) {
+if (((enemyPositionX5 - 40) <= positionX) && (positionX <= (enemyPositionX5 + 40)) && ((enemyPositionY5 - 40) <= positionY) && (positionY <= (enemyPositionY5 + 40))) {
   setHit5(true);
 } else {
   setHit5(false);
@@ -722,7 +724,7 @@ if (enemyAttack5 && hit5) {
 useEffect(() => {
 if (attack && hit5) {
   setEnemyHP5((prevEnemyHP5) => prevEnemyHP5 - playerDMG);
-  if (enemyHP5 <= 0) {
+  if (enemyHP5 <= 1) {
     setEnemy5(false)
     setEnemyDMG5(0)
     endgame()
@@ -810,19 +812,44 @@ if (attack && hit5) {
         </div>
 
 
-
-
-
-
       <div style={{ position: "absolute"}}>
 
       <>
+      <h1>X{positionX}</h1>
+      <h1>Y{positionY}</h1>
       <h1>PLAYER HP: {playerHP}</h1>
-      <h1>DEMON HP: {enemyHP}</h1>
-      <h1>DEMON2 HP: {enemyHP2}</h1>
-      <h1>DEMON3 HP: {enemyHP3}</h1>
-      <h1>DEMON4 HP: {enemyHP4}</h1>
-      <h1>DEMON5 HP: {enemyHP5}</h1>
+
+      {enemy1? (
+        <h1>DEMON HP: {enemyHP}</h1>
+        ):(
+        <></>
+        )}
+
+      {enemy2? (
+        <h1>DEMON2 HP: {enemyHP2}</h1>
+        ):(
+        <></>
+        )}
+
+      {enemy3? (
+        <h1>DEMON3 HP: {enemyHP3}</h1>
+        ):(
+        <></>
+        )}
+
+      {enemy4? (
+        <h1>DEMON4 HP: {enemyHP4}</h1>
+        ):(
+        <></>
+        )}
+
+      {enemy5? (
+        <h1>DEMON5 HP: {enemyHP5}</h1>
+        ):(
+        <></>
+        )}
+
+
       </>
       </div>
     </div>

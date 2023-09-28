@@ -92,7 +92,7 @@ function handleLoginSubmit(event) {
             id: "",
             email: newEmail,
             password: newPass,
-            money: 0,
+            money: 200,
             hp: 10,
             speed: 10,
             dmg: 1,

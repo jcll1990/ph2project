@@ -3,38 +3,14 @@
     {
       "id": 1,
       "email": "email1@gmail.com",
-      "password": "123",
-      "money": 280,
-      "hp": 10,
-      "speed": 12,
-      "dmg": 5,
-      "armor": 0,
-      "boots": 1,
-      "sword": 2
-    },
-    {
-      "id": 2,
-      "email": "email2@gmail.com",
-      "password": "2",
-      "money": 600,
+      "password": "1",
+      "money": 300,
       "hp": 25,
       "speed": 20,
       "dmg": 5,
       "armor": 1,
       "boots": 3,
       "sword": 2
-    },
-    {
-      "id": 3,
-      "email": "email3@gmail.com",
-      "password": "3",
-      "money": 0,
-      "hp": 10,
-      "speed": 10,
-      "dmg": 1,
-      "armor": 0,
-      "boots": 0,
-      "sword": 0
     }
   ],
   "items": {
@@ -149,7 +125,7 @@
       "e3": false,
       "e4": false,
       "e5": false,
-      "ehp": 10,
+      "ehp": 5,
       "ed": 1,
       "es": 5,
       "price": 100
@@ -162,7 +138,7 @@
       "e4": false,
       "e5": false,
       "ehp": 15,
-      "ed": 1,
+      "ed": 3,
       "es": 8,
       "price": 300
     },
@@ -174,7 +150,7 @@
       "e4": false,
       "e5": false,
       "ehp": 20,
-      "ed": 1,
+      "ed": 5,
       "es": 12,
       "price": 500
     },
@@ -186,7 +162,7 @@
       "e4": true,
       "e5": false,
       "ehp": 25,
-      "ed": 1,
+      "ed": 8,
       "es": 15,
       "price": 1000
     },
@@ -198,7 +174,7 @@
       "e4": true,
       "e5": true,
       "ehp": 30,
-      "ed": 1,
+      "ed": 15,
       "es": 20,
       "price": 2000
     }
