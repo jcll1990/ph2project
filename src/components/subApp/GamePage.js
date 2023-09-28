@@ -12,14 +12,14 @@ import demon1attack from "./images/demon1/demon1attack.gif"
 import { useHistory } from "react-router-dom";
 
 
-function GamePage({player,setLaunch}) {
+function GamePage({setPlayer, player, setLaunch}) {
 
 const history = useHistory();
-const [playerHP, setPlayerHP] = useState(player.user_hp)
+const [playerHP, setPlayerHP] = useState(player.hp)
 
-let playerSpeed = player.user_speed
+let playerSpeed = player.speed
 
-let playerDMG = player.user_dmg
+let playerDMG = player.dmg
 
 
 
@@ -41,7 +41,7 @@ const [isMovingRight, setIsMovingRight] = useState(false);
 ///////////ENEMY VARIABLES
 
 const [enemySpeed, setEnemySpeed] = useState(5)
-const [enemyHP, setEnemyHP] = useState(5)
+const [enemyHP, setEnemyHP] = useState(10)
 
 
 const [enemyImg, setEnemyImg] = useState(demon1run)
@@ -58,15 +58,15 @@ const [trigger, setTrigger] = useState(false);
 
 
   const playerImg = {
-    width: "80px",
-    height: "80px",
+    width: "150px",
+    height: "150px",
     position: "absolute",
     top: `${Math.max(0, Math.min(7200, positionY))}px`,
     left: `${Math.max(0, Math.min(1450, positionX))}px`,
   };
   const demonImg = {
-    width: "150px",
-    height: "150px",
+    width: "200px",
+    height: "200px",
     position: "absolute",
     top: `${Math.max(0, Math.min(750, enemyPositionY))}px`, // Ensure the red square stays within the div
     left: `${Math.max(0, Math.min(1450, enemyPositionX))}px`, // Ensure the red square stays within the div
@@ -75,13 +75,32 @@ const [trigger, setTrigger] = useState(false);
 
   function endgame() {
 
-    if (enemyHP === 0) {
-      alert("You won!")
-    } else {
-      alert("You died")
-    }
-
     setLaunch(false)
+    if (enemyHP <= 0) {
+
+      let userupdate = {
+        money : (player.money +100)
+        }
+
+    fetch(`http://localhost:3000/users/${player.id}`, {
+    method: 'PATCH',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(userupdate)
+    })
+    .then(response => {
+
+        fetch(`http://localhost:3000/users/${player.id}`)
+        .then((resp) => resp.json())
+        .then((data) => {
+            setPlayer(data);
+            alert("You won")
+        });
+    })
+    } else {
+      alert ("You died")
+    }
     history.push("/mainpage");
 }
 
@@ -98,21 +117,21 @@ useEffect(() => {
       switch (e.key) {
         case "ArrowUp":
           if (!isMovingUp) {
-            setPositionY((prevPositionY) => prevPositionY - 10 - playerSpeed);
+            setPositionY((prevPositionY) => prevPositionY - playerSpeed);
             setIsMovingUp(true);
             setAttack(false);
           }
           break;
         case "ArrowDown":
           if (!isMovingDown) {
-            setPositionY((prevPositionY) => prevPositionY + 10 + playerSpeed);
+            setPositionY((prevPositionY) => prevPositionY + playerSpeed);
             setIsMovingDown(true);
             setAttack(false);
           }
           break;
         case "ArrowLeft":
           if (!isMovingLeft) {
-            setPositionX((prevPositionX) => prevPositionX - 10 - playerSpeed);
+            setPositionX((prevPositionX) => prevPositionX - playerSpeed);
             setImageToUse(champ2runl);
             setIsMovingLeft(true);
             setAttack(false);
@@ -120,7 +139,7 @@ useEffect(() => {
           break;
         case "ArrowRight":
           if (!isMovingRight) {
-            setPositionX((prevPositionX) => prevPositionX + 10 + playerSpeed);
+            setPositionX((prevPositionX) => prevPositionX + playerSpeed);
             setImageToUse(champ2runr);
             setIsMovingRight(true);
             setAttack(false);
@@ -222,7 +241,7 @@ useEffect(() => {
     setEnemyAttack(true);
     setTimeout(() => {
       setEnemyAttack(false);
-    }, 800); // Set the enemyAttack to false after 300 milliseconds
+    }, 500); // Set the enemyAttack to false after 300 milliseconds
   };
 
   // Start with an initial toggle
@@ -254,8 +273,8 @@ useEffect(() => {
 useEffect(() => {
   if (enemyAttack && hit) {
     setPlayerHP((prevPlayerHP) => prevPlayerHP - 1)
-    if(playerHP === 0) {
-      endgame ()
+    if (playerHP <=0) {
+      endgame()
     }
 
   }
@@ -265,8 +284,8 @@ useEffect(() => {
 useEffect(() => {
   if (attack && hit) {
     setEnemyHP((prevEnemyHP) => prevEnemyHP - playerDMG);
-    if(enemyHP === 0) {
-      endgame ()
+    if (enemyHP <= 0) {
+      endgame()
     }
 
   }

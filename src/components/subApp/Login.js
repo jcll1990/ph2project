@@ -2,62 +2,57 @@ import React from "react";
 import { useState,} from "react";
 import { useHistory } from "react-router-dom";
 
-function Login({allData, setPlayer}) {
+function Login({allUsers, setPlayer}) {
 
   const history = useHistory();
 
   const [showCA, setShowCA] = useState (false)
   const [showCP, setShowCP] = useState (false)
 
+  let id 
 
-  
   function startmp() {
-
     history.push("/mainpage");
   }
  
 //LOGING 
+function handleLoginSubmit(event) {
+  event.preventDefault();
 
+  const logEmail = event.target.loginEmail.value;
+  const logPass = event.target.loginPass.value;
 
-  function handleLoginSubmit(event) {
+  let userFound = false;
 
-    
-    event.preventDefault();
-  
-    const logEmail = event.target.loginEmail.value;
-    const logPass = event.target.loginPass.value;
-
-    let userFound = false;
-
-    if (logEmail.trim() !== "") {
-  
-
-        for (let i = 0; i < allData.length; i++) {
-          if (allData[i].user_email === logEmail) {
-            setPlayer(allData[i])
-            userFound = true  
-            login (allData[i])
-            break;
-          }
-        }    
-    } else {
-      alert("Write down an email dude")
-    } 
-
-    function login (a) {
-      if (!userFound) {
-        alert("user not found")
-      } else if (a.password === logPass) {
-        alert("Logged in")
-        setPlayer(a)
-       startmp() 
-
-      } else {
-        alert("Wrong Password")
+  if (logEmail.trim() !== "") {
+    for (let i = 0; i < allUsers.length; i++) {
+      if (allUsers[i].email === logEmail) {
+        setPlayer(allUsers[i]);
+        userFound = true;
+        alert("User found");
+        login(allUsers[i]);
+        break;
       }
     }
 
+    if (!userFound) {
+      alert("User not found");
+    }
+  } else {
+    alert("Write down an email dude");
   }
+
+  function login(a) {
+    if (a.password === logPass) {
+      alert("Logged in");
+      setPlayer(a);
+      startmp();
+    } else {
+      alert("Wrong Password");
+    }
+  }
+}
+
 
 //CREATE ACCOUNT
   function createAccount() {
@@ -76,7 +71,7 @@ function Login({allData, setPlayer}) {
       .then((resp) => resp.json())
       .then((data) => {
         for (let i = 0; i < data.length; i++) {
-          if (data[i].user_email === newEmail) {
+          if (data[i].email === newEmail) {
             duplicatedUser = true;
             break;
           }
@@ -92,39 +87,21 @@ function Login({allData, setPlayer}) {
           alert("Password cannot contain spaces");
         } else {
 
-          const newUser = {
+          const newUser =   
+          {
             id: "",
-            user_email: newEmail,
-            user_name: "",
-            user_name_quest: false,
+            email: newEmail,
             password: newPass,
-            user_photo: "",
-            user_upgrades: [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            user_money : 0,
-            user_hp : 10,
-            user_speed : 1,
-            user_dmg : 1,
-            user_lvl : 1,
-            user_champ : 3,
-            difficulty : false
+            money: 0,
+            hp: 10,
+            speed: 10,
+            dmg: 1,
+            armor: 0,
+            boots: 0,
+            sword: 0
           }
 
-          addNewUser(newUser);
-
-                    
+          addNewUser(newUser);                    
         }
       });
   }
@@ -141,7 +118,7 @@ function Login({allData, setPlayer}) {
         .then(resp => resp.json())
         .then(data => { 
    
-        alert("New user created")
+        alert("New user created \nNow log in")
         setShowCA(false)
         window.location.reload();
       })
@@ -157,6 +134,59 @@ function Login({allData, setPlayer}) {
   function handleUpdatePasswordSubmit(event) {
     event.preventDefault()
 
+
+    const updateEmail= event.target.updateEmail.value;
+    const updateOldPass= event.target.updateOldpass.value;
+    const updateNewPass= event.target.updateNewPass.value;
+    const updateCheckNewPass= event.target.updateCheckNewPass.value;
+
+    fetch("http://localhost:3000/users")
+    .then(resp => resp.json())
+    .then(allUser => {
+        console.log(allUser.length);
+
+        let userFound = false; 
+
+        for (let i = 0; i < allUser.length; i++) {
+
+            if (updateEmail === allUser[i].email && updateOldPass === allUser[i].password) {  
+                
+                id = (1+i)
+                userFound = true;
+                break;
+            }
+        }
+        if (!userFound) {
+            alert('Incorrect Email or Old Password');
+
+        } else {
+            alert(`User and old pasword found`)   
+                
+            if ((updateNewPass === updateCheckNewPass) && (updateNewPass.trim() !== "") && (updateNewPass.trim().length <= updateNewPass.length)) {
+            
+                let userupdate = {
+                password : updateNewPass
+                }
+
+                fetch(`http://localhost:3000/users/${id}`, {
+                method: 'PATCH',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userupdate)
+                })
+                .then(response => {
+                  alert('Password changed')
+                  window.location.reload();
+                })
+            } else {
+                alert('New passwords do not match')
+
+            }          
+        };
+    });
+
+
   }
 
 
@@ -169,7 +199,7 @@ function Login({allData, setPlayer}) {
     <h3>An old school simple RPG</h3>
 
 
-    <h3>LOGIN</h3>
+    <h3>LOG IN</h3>
     <form onSubmit={handleLoginSubmit}>
       <label>Email:</label>
       <br />

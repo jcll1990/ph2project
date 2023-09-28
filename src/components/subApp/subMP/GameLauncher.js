@@ -6,18 +6,18 @@ function GameLauncher({setLaunch,launch}) {
     const history = useHistory();
 
 
-function startgame() {
-    setLaunch(true)
-    history.push("/gamepage");
+    function startgame() {
+        setLaunch(true)
+        history.push("/gamepage");
 }
 
     
     return (
-<>
+            <>
 
-<button onClick={() => startgame()}> Run game! </button>
+            <button onClick={() => startgame()}> Run game! </button>
 
-</>
+            </>
     )
 
 }

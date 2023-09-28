@@ -9,13 +9,20 @@ import champ2runl from "./images/champ2/champ2runl.gif"
 import demon1run from "./images/demon1/demon1run.gif"
 import demon1attack from "./images/demon1/demon1attack.gif"
 
+import { useHistory } from "react-router-dom";
 
-function GamePage() {
+
+function GamePage({setPlayer, player, setLaunch}) {
+
+const history = useHistory();
+const [playerHP, setPlayerHP] = useState(player.hp)
+
+let playerSpeed = player.speed
+
+let playerDMG = player.dmg
 
 
-const [playerHP, setPlayerHP] = useState(10)
-const [playerSpeed, setPlayerSpeed] = useState(20)
-const [playerDMG, setPlayerDMG] = useState(1)
+
 
 const [hit, setHit] = useState(false)
 const [imageToUse, setImageToUse] = useState(champ2runr)
@@ -34,7 +41,7 @@ const [isMovingRight, setIsMovingRight] = useState(false);
 ///////////ENEMY VARIABLES
 
 const [enemySpeed, setEnemySpeed] = useState(5)
-const [enemyHP, setEnemyHP] = useState(5)
+const [enemyHP, setEnemyHP] = useState(10)
 
 
 const [enemyImg, setEnemyImg] = useState(demon1run)
@@ -51,19 +58,51 @@ const [trigger, setTrigger] = useState(false);
 
 
   const playerImg = {
-    width: "100px",
-    height: "120px",
+    width: "150px",
+    height: "150px",
     position: "absolute",
     top: `${Math.max(0, Math.min(7200, positionY))}px`,
     left: `${Math.max(0, Math.min(1450, positionX))}px`,
   };
   const demonImg = {
-    width: "150px",
-    height: "150px",
+    width: "200px",
+    height: "200px",
     position: "absolute",
     top: `${Math.max(0, Math.min(750, enemyPositionY))}px`, // Ensure the red square stays within the div
     left: `${Math.max(0, Math.min(1450, enemyPositionX))}px`, // Ensure the red square stays within the div
   };
+
+
+  function endgame() {
+
+    setLaunch(false)
+    if (enemyHP <= 0) {
+
+      let userupdate = {
+        money : (player.money +100)
+        }
+
+    fetch(`http://localhost:3000/users/${player.id}`, {
+    method: 'PATCH',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(userupdate)
+    })
+    .then(response => {
+
+        fetch(`http://localhost:3000/users/${player.id}`)
+        .then((resp) => resp.json())
+        .then((data) => {
+            setPlayer(data);
+            alert("You won")
+        });
+    })
+    } else {
+      alert ("You died")
+    }
+    history.push("/mainpage");
+}
 
 
 
@@ -192,11 +231,9 @@ useEffect(() => {
 
       setTrigger((prevTrigger) => !prevTrigger);
     }, 300); 
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []); 
 
+  }, []); 
+  
 ////////////////ENEMY ATTACK
 
 useEffect(() => {
@@ -204,7 +241,7 @@ useEffect(() => {
     setEnemyAttack(true);
     setTimeout(() => {
       setEnemyAttack(false);
-    }, 800); // Set the enemyAttack to false after 300 milliseconds
+    }, 500); // Set the enemyAttack to false after 300 milliseconds
   };
 
   // Start with an initial toggle
@@ -220,13 +257,13 @@ useEffect(() => {
 
   
 
-}, []);
+}, [enemyAttack,attack]);
 
 
 ////////////////////////////////////// HIT
 
 useEffect(() => {
-  if (((enemyPositionX - 50) <= positionX) && (positionX <= (enemyPositionX + 50)) && ((enemyPositionY - 50) <= positionY) && (positionY <= (enemyPositionY + 50))) {
+  if (((enemyPositionX - 30) <= positionX) && (positionX <= (enemyPositionX + 30)) && ((enemyPositionY - 30) <= positionY) && (positionY <= (enemyPositionY + 30))) {
     setHit(true);
   } else {
     setHit(false);
@@ -235,8 +272,11 @@ useEffect(() => {
 
 useEffect(() => {
   if (enemyAttack && hit) {
-    setPlayerHP((prevPlayerHP) => prevPlayerHP - 1);
-    if(playerHP <=1) {alert("Pierdes")} else {}
+    setPlayerHP((prevPlayerHP) => prevPlayerHP - 1)
+    if (playerHP <=0) {
+      endgame()
+    }
+
   }
 
 }, [attack, enemyAttack]);
@@ -244,7 +284,10 @@ useEffect(() => {
 useEffect(() => {
   if (attack && hit) {
     setEnemyHP((prevEnemyHP) => prevEnemyHP - playerDMG);
-    if(enemyHP <=1) {alert("Ganas")} else {}
+    if (enemyHP <= 0) {
+      endgame()
+    }
+
   }
 
 }, [attack, enemyAttack]);
@@ -259,9 +302,7 @@ useEffect(() => {
   return (
 
     <div>
-          <>
-    <button onClick={() => test()}>test</button>
-    </>
+          
     <div className="map-container">
         <img 
             src={imageToUse}
