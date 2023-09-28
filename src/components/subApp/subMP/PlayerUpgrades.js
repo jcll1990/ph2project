@@ -15,6 +15,8 @@ function PlayerUpgrades({
 
     
     return (
+        <div class="container">
+        <div class="allShop">
         <div className="shop-card">
         <h2>Equiped equipment</h2>
 
@@ -96,6 +98,8 @@ function PlayerUpgrades({
                 </div>
             )}
             </div>
+        </div>
+        </div>
         </div>
     )
 

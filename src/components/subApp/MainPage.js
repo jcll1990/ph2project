@@ -21,6 +21,7 @@ function MainPage({
     
     return (
     <>
+    <div className="supercontainer">
     <PlayerStats
         player={player}
 
@@ -38,7 +39,7 @@ function MainPage({
         setStoreItems = {setStoreItems}
 
     />
-
+    </div>
     <GameLauncher
         setLaunch={setLaunch}
         launch={launch}

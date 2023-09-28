@@ -204,7 +204,8 @@ function GameUpgrades({
  
     return (
 
-
+<div class="container">
+  <div class="allShop">
         <div className="shop-card">
             <h2>Store</h2>
 
@@ -299,8 +300,9 @@ function GameUpgrades({
                 )
             }})}
             </div>
-
         </div>
+        </div>
+            </div>
         
     )
 

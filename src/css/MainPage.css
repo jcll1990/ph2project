@@ -1,7 +1,6 @@
-/* CSS for the container that holds the card and shop elements */
 .player-container {
   display: grid;
-  grid-template-columns: 1fr 4fr; /* Two equal columns for the card and shop */
+  grid-template-columns: 6fr 5fr 4fr;/* Two equal columns for the card and shop */
   gap: 0px; /* Adjust the gap as needed */
 }
 
@@ -54,19 +53,11 @@
   font-family: 'Courier New', Courier, monospace;
   font-size: 16px; /* Adjust font size as needed */
   z-index: 1; /* Place the stats above the background */
-  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* Add a black outline */
+  text-shadow: -1px -1px 0 rgb(173, 11, 11), 1px -1px 0 rgb(134, 3, 3), -1px 1px 0 rgb(90, 6, 6), 1px 1px 0 rgb(81, 0, 0); /* Add a black outline */
 }
 
-/* CSS for the shop card */
-.shop-card {
-  width: 100%; /* Adjust the width to take the full column width */
-}
 
-/* CSS for the shop items as cards */
-.shop-column {
-  display: flex; /* Display items in a row */
-  align-items: center; /* Center items vertically */
-}
+
 
 .shop-item {
   width: 100px; /* Set the width to 100px */
@@ -92,6 +83,12 @@
   height: 150px; /* Set the image height to 100px */
   display: block; /* Remove any extra space below the image */
   z-index: 0; /* Place the image below the overlay */
+}
+.shop-item{
+
+  flex-direction: column; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
 }
 
 /* Style the text content on top of the image */
@@ -128,4 +125,75 @@ button {
 button:hover {
   background-color: #eeeeee; /* Change background color on hover */
   color: rgb(214, 16, 16); /* Change text color on hover */
+}
+
+.died-screen {
+  /* Set the background color to black for the entire page */
+  background-color: black;
+  /* Center the contents vertically and horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Define a class for making images 500% bigger */
+.enlarge-image {
+  width: 500%;
+  height: 500%;
+}
+
+/* Center the buttons */
+button {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+
+h1, h2, h3, h4{
+  color: rgb(194, 0, 0);
+  text-shadow: rgb(106, 4, 4);
+  display: flex;
+  flex-direction: column; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  margin: 0; /* Remove default margin to avoid unexpected spacing */
+  overflow: hidden; /* Hide any content that overflows the viewport */
+
+}
+label{
+  color: rgb(33, 153, 239);
+}
+form{
+  background-image: url('../components/subApp/images/maps/bg.png');
+  background-size: cover;
+  background-position: center;
+flex-direction: column;
+  z-index: -1; /* Place the background behind the content */
+}
+.login-full {
+  display: flex;
+  flex-direction: column; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  margin: 0; /* Remove default margin to avoid unexpected spacing */
+  overflow: hidden; /* Hide any content that overflows the viewport */
+}
+body{
+  background-color: black;
+}
+.allShop {
+  display: flex; /* Use Flexbox */
+  flex-direction: column; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+.supercontainer {
+  display: flex; /* Use Flexbox */
+  flex-direction: row; /* Arrange elements in a row from left to right */
+  justify-content: 20px; /* Add space between the elements horizontally */
+  align-items: center; /* Center content vertically */
 }
