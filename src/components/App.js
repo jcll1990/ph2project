@@ -19,6 +19,10 @@ function App() {
 
   const [launch, setLaunch] = useState(false)
 
+  const [selectedlevel, setSelectedLevel] = useState({})
+
+  const [allLevels, setAllLevels] = useState([])
+
 
   useEffect(() => {
     fetch(`http://localhost:3000/users`)
@@ -33,6 +37,14 @@ function App() {
       .then((resp) => resp.json())
       .then((data) => {
         setStoreItems(data);
+      });
+  }, []);
+   
+  useEffect(() => {
+  fetch(`http://localhost:3000/levels`)
+    .then((resp) => resp.json())
+    .then((data) => {
+      setAllLevels(data);
       });
   }, []);
 
@@ -64,6 +76,8 @@ function App() {
             setLaunch={setLaunch}
             storeItems = {storeItems}
             setStoreItems = {setStoreItems}
+            allLevels ={allLevels}
+            setSelectedLevel = {setSelectedLevel}
         />
       </Route>
 

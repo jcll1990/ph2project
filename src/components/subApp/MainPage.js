@@ -11,7 +11,9 @@ function MainPage({
     launch,
     setLaunch,
     storeItems,
-    setStoreItems
+    setStoreItems,
+    allLevels,
+    setSelectedLevel
 }) {
 
 
@@ -40,6 +42,8 @@ function MainPage({
     <GameLauncher
         setLaunch={setLaunch}
         launch={launch}
+        allLevels = {allLevels}
+        setSelectedLevel = {setSelectedLevel}
     />
     </>
     )

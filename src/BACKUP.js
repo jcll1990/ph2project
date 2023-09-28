@@ -12,21 +12,21 @@ import demon1attack from "./images/demon1/demon1attack.gif"
 import { useHistory } from "react-router-dom";
 
 
-function GamePage({setPlayer, player, setLaunch}) {
+function GamePage({
+  player,
+  setPlayer,
+  setLaunch
+}) {
 
 const history = useHistory();
+
+
 const [playerHP, setPlayerHP] = useState(player.hp)
-
 let playerSpeed = player.speed
-
 let playerDMG = player.dmg
-
-
-
 
 const [hit, setHit] = useState(false)
 const [imageToUse, setImageToUse] = useState(champ2runr)
-
 
 const [attack, setAttack] = useState(false)
 const [positionX, setPositionX] = useState(700);
@@ -42,9 +42,6 @@ const [isMovingRight, setIsMovingRight] = useState(false);
 
 const [enemySpeed, setEnemySpeed] = useState(5)
 const [enemyHP, setEnemyHP] = useState(10)
-
-
-const [enemyImg, setEnemyImg] = useState(demon1run)
 
 const [enemyAttack, setEnemyAttack] = useState(false)
 const [enemyPositionX, setEnemyPositionX] = useState(300); 
@@ -211,7 +208,7 @@ useEffect(() => {
 
     if (positionY > enemyPositionY) {
       dy = 1} else if (positionY < enemyPositionY) {
-        dy = -1} else {dy = 0}
+      dy = -1} else {dy = 0}
 
     setEnemyPositionX((prevPositionX) => prevPositionX + dx * enemySpeed);
     setEnemyPositionY((prevPositionY) => prevPositionY + dy * enemySpeed);
@@ -241,22 +238,14 @@ useEffect(() => {
     setEnemyAttack(true);
     setTimeout(() => {
       setEnemyAttack(false);
-    }, 500); // Set the enemyAttack to false after 300 milliseconds
+    }, 500); 
   };
-
-  // Start with an initial toggle
   toggleAttack();
 
-  // Set up an interval to toggle the enemyAttack state every 3000 milliseconds (3 seconds)
   const intervalId = setInterval(toggleAttack, 2000);
-
-  // Clean up the interval when the component unmounts
   return () => {
     clearInterval(intervalId);
   };
-
-  
-
 }, [enemyAttack,attack]);
 
 
@@ -291,9 +280,6 @@ useEffect(() => {
   }
 
 }, [attack, enemyAttack]);
-
-
-
 
 
 /////////////////////////////////////////////////////////////////GAME HTML

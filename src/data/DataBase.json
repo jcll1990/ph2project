@@ -4,13 +4,13 @@
       "id": 1,
       "email": "email1@gmail.com",
       "password": "123",
-      "money": 200,
+      "money": 380,
       "hp": 10,
-      "speed": 10,
-      "dmg": 1,
+      "speed": 12,
+      "dmg": 2,
       "armor": 0,
-      "boots": 0,
-      "sword": 0
+      "boots": 1,
+      "sword": 1
     }
   ],
   "items": {
@@ -118,6 +118,65 @@
     ]
   },
   "levels": [
-    {}
+    {
+      "id": 1,
+      "e1": true,
+      "e2": false,
+      "e3": false,
+      "e4": false,
+      "e5": false,
+      "ehp": 10,
+      "ed": 1,
+      "es": 5,
+      "price": 100
+    },
+    {
+      "id": 2,
+      "e1": true,
+      "e2": true,
+      "e3": false,
+      "e4": false,
+      "e5": false,
+      "ehp": 15,
+      "ed": 1,
+      "es": 8,
+      "price": 300
+    },
+    {
+      "id": 3,
+      "e1": true,
+      "e2": true,
+      "e3": true,
+      "e4": false,
+      "e5": false,
+      "ehp": 20,
+      "ed": 1,
+      "es": 12,
+      "price": 800
+    },
+    {
+      "id": 4,
+      "e1": true,
+      "e2": true,
+      "e3": true,
+      "e4": true,
+      "e5": false,
+      "ehp": 25,
+      "ed": 1,
+      "es": 15,
+      "price": 800
+    },
+    {
+      "id": 5,
+      "e1": true,
+      "e2": true,
+      "e3": true,
+      "e4": true,
+      "e5": true,
+      "ehp": 30,
+      "ed": 1,
+      "es": 20,
+      "price": 800
+    }
   ]
 }
