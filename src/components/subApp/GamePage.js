@@ -39,8 +39,8 @@ const [hit5, setHit5] = useState(false)
 const [imageToUse, setImageToUse] = useState(champ2runr)
 
 const [attack, setAttack] = useState(false)
-const [positionX, setPositionX] = useState(750);
-const [positionY, setPositionY] = useState(350);
+const [positionX, setPositionX] = useState(650);
+const [positionY, setPositionY] = useState(250);
 const [isMovingUp, setIsMovingUp] = useState(false);
 const [isMovingDown, setIsMovingDown] = useState(false);
 const [isMovingLeft, setIsMovingLeft] = useState(false);
@@ -60,7 +60,7 @@ const [enemy1, setEnemy1] = useState(selectedlevel.e1)
 
 const [enemyDMG, setEnemyDMG] = useState(selectedlevel.ed)
 const [enemyAttack, setEnemyAttack] = useState(false)
-const [enemyPositionX, setEnemyPositionX] = useState(200); 
+const [enemyPositionX, setEnemyPositionX] = useState(100); 
 const [enemyPositionY, setEnemyPositionY] = useState(50); 
 
 
@@ -71,7 +71,7 @@ const [enemy2, setEnemy2] = useState(selectedlevel.e2)
 
 const [enemyDMG2, setEnemyDMG2] = useState(selectedlevel.ed)
 const [enemyAttack2, setEnemyAttack2] = useState(false)
-const [enemyPositionX2, setEnemyPositionX2] = useState(1200); 
+const [enemyPositionX2, setEnemyPositionX2] = useState(1100); 
 const [enemyPositionY2, setEnemyPositionY2] = useState(50); 
 
 
@@ -93,7 +93,7 @@ const [enemy4, setEnemy4] = useState(selectedlevel.e4)
 
 const [enemyDMG4, setEnemyDMG4] = useState(selectedlevel.ed)
 const [enemyAttack4, setEnemyAttack4] = useState(false)
-const [enemyPositionX4, setEnemyPositionX4] = useState(1400); 
+const [enemyPositionX4, setEnemyPositionX4] = useState(1300); 
 const [enemyPositionY4, setEnemyPositionY4] = useState(300); 
 
 
@@ -103,8 +103,8 @@ const [enemy5, setEnemy5] = useState(selectedlevel.e5)
 
 const [enemyDMG5, setEnemyDMG5] = useState(selectedlevel.ed)
 const [enemyAttack5, setEnemyAttack5] = useState(false)
-const [enemyPositionX5, setEnemyPositionX5] = useState(600); 
-const [enemyPositionY5, setEnemyPositionY5] = useState(600); 
+const [enemyPositionX5, setEnemyPositionX5] = useState(500); 
+const [enemyPositionY5, setEnemyPositionY5] = useState(300); 
 
 
 
@@ -361,7 +361,7 @@ useEffect(() => {
 }, [positionX, positionY, enemyPositionX, enemyPositionY, attack, enemyAttack]);
 
 useEffect(() => {
-  if (enemyAttack && hit) {
+  if (enemyAttack && hit && enemy1) {
     setPlayerHP((prevPlayerHP) => prevPlayerHP - enemyDMG)
     if (playerHP <=0) {
       endgame()
@@ -449,7 +449,7 @@ if (((enemyPositionX2 - 40) <= positionX) && (positionX <= (enemyPositionX2 + 40
 }, [positionX, positionY, enemyPositionX2, enemyPositionY2, attack, enemyAttack2]);
 
 useEffect(() => {
-if (enemyAttack2 && hit2) {
+if (enemyAttack2 && hit2 && enemy2) {
   setPlayerHP((prevPlayerHP) => prevPlayerHP - enemyDMG2)
   if (playerHP <=0) {
     endgame()
@@ -536,7 +536,7 @@ if (((enemyPositionX3 - 40) <= positionX) && (positionX <= (enemyPositionX3 + 40
 }, [positionX, positionY, enemyPositionX3, enemyPositionY3, attack, enemyAttack3]);
 
 useEffect(() => {
-if (enemyAttack3 && hit3) {
+if (enemyAttack3 && hit3 && enemy3) {
   setPlayerHP((prevPlayerHP) => prevPlayerHP - enemyDMG3)
   if (playerHP <=0) {
     endgame()
@@ -622,7 +622,7 @@ if (((enemyPositionX4 - 40) <= positionX) && (positionX <= (enemyPositionX4 + 40
 }, [positionX, positionY, enemyPositionX4, enemyPositionY4, attack, enemyAttack4]);
 
 useEffect(() => {
-if (enemyAttack4 && hit4) {
+if (enemyAttack4 && hit4 && enemy4) {
   setPlayerHP((prevPlayerHP) => prevPlayerHP - enemyDMG4)
   if (playerHP <=0) {
     endgame()
@@ -711,7 +711,7 @@ if (((enemyPositionX5 - 40) <= positionX) && (positionX <= (enemyPositionX5 + 40
 }, [positionX, positionY, enemyPositionX5, enemyPositionY5, attack, enemyAttack5]);
 
 useEffect(() => {
-if (enemyAttack5 && hit5) {
+if (enemyAttack5 && hit5 && enemy5) {
   setPlayerHP((prevPlayerHP) => prevPlayerHP - enemyDMG5)
   if (playerHP <=0) {
     endgame()
