@@ -31,23 +31,24 @@ function GameLauncher({
   }
 
   return (
-<>
+  
+    <div id="launcher">
 
-    <form onSubmit={handleSubmit}>
-      <label>Select a level:</label>
+      <form onSubmit={handleSubmit}>
+        <label id="launchertext" className="launchParts">Kill the demons:</label>
 
-      <select name="levelSelect" id="levelSelect">
-        <option value="">-- Select a level --</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-      <button type="submit">Submit</button>
-    </form>
+        <select className="launchParts"  name="levelSelect" id="levelSelect">
+          <option value="">-- Select a level --</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <button className="launchParts"  id="launchbutton" type="submit">DO NOT DIE</button>
+      </form>
 
-    </>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
-import champimg from "../images/champ2/champ2image.png";
-import "../../../css/MainPage.css";
+import champimg from "../../../images/champ/champ2image.png";
+
 
 export default function PlayerStats({
   player
@@ -10,19 +10,18 @@ export default function PlayerStats({
   };
 
   return (
-    <div className="player-container">
-      <div className="card">
-        <div className="card-content">
+    <div id="playerstats">  
+        <div id="photochamp">
           <img src={champimg} style={champImg} alt="Champion" />
-          <div className="player-stats">
-            <h3>Stats</h3>
-            <h4>HP: {player.hp}</h4>
-            <h4>Damage: {player.dmg}</h4>
-            <h4>Speed: {player.speed}</h4>
-            <h4>Money: {player.money}</h4>
-          </div>
         </div>
-      </div>
+
+        <div id="player-stats">
+            <h1>Stats</h1>
+            <h2>HP: {player.hp}</h2>
+            <h2>Damage: {player.dmg}</h2>
+            <h2>Speed: {player.speed}</h2>
+            <h2>Money: {player.money}</h2>
+        </div>    
     </div>
   );
 }

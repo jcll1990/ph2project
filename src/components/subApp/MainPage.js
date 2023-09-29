@@ -5,6 +5,7 @@ import GameUpgrades from "./subMP/GameUpgrades";
 import GameLauncher from "./subMP/GameLauncher";
 
 
+
 function MainPage({
     player,
     setPlayer,
@@ -20,33 +21,45 @@ function MainPage({
     
     
     return (
-    <>
-    <div className="supercontainer">
-    <PlayerStats
-        player={player}
+    
+    <div id="main">
 
-    />
+        <div id ="playershit">
 
-    <PlayerUpgrades
-        player={player}
-        storeItems = {storeItems}
-    />
+             <PlayerUpgrades id="playerupgrades"
+                player={player}
+                storeItems = {storeItems}
+            />
 
-    <GameUpgrades
-        player={player}
-        setPlayer = {setPlayer}
-        storeItems = {storeItems}
-        setStoreItems = {setStoreItems}
+            <PlayerStats id="playerstats"
+                player={player}
 
-    />
+            />
+
+
+        </div>
+
+        <div id ="othershit">
+
+        
+            <GameLauncher id="game launcher"
+                setLaunch={setLaunch}
+                launch={launch}
+                allLevels = {allLevels}
+                setSelectedLevel = {setSelectedLevel}
+            />
+
+            <GameUpgrades id="store"
+                player={player}
+                setPlayer = {setPlayer}
+                storeItems = {storeItems}
+                setStoreItems = {setStoreItems}
+
+            />
+            
+         </div>
     </div>
-    <GameLauncher
-        setLaunch={setLaunch}
-        launch={launch}
-        allLevels = {allLevels}
-        setSelectedLevel = {setSelectedLevel}
-    />
-    </>
+    
     )
 
 }

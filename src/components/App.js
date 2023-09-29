@@ -10,6 +10,8 @@ import YouSurvivedPage from "./subApp/YouSurvivedPage.js"
 
 import {Switch, Route} from 'react-router-dom';
 
+import "../css/Main.css"
+
 function App() {
 
 
@@ -52,7 +54,9 @@ function App() {
 
 
   return (
+    
   <div>
+    
     <Switch>
 
       <Route exact path="/">
@@ -95,7 +99,7 @@ function App() {
               selectedlevel = {selectedlevel}
             />
           ) : (
-            <img src="/load.jpg" alt="Loading" />
+            <img src="/images/load.jpg" alt="Loading" />
           )}
         
       </Route>
@@ -113,7 +117,7 @@ function App() {
       </Route>
 
     </Switch>
-    </div>
+  </div>
       
   );
 }

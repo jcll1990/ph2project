@@ -4,13 +4,13 @@
       "id": 1,
       "email": "email1@gmail.com",
       "password": "1",
-      "money": 100,
+      "money": 200,
       "hp": 10,
-      "speed": 15,
-      "dmg": 5,
+      "speed": 10,
+      "dmg": 1,
       "armor": 0,
-      "boots": 2,
-      "sword": 2
+      "boots": 0,
+      "sword": 0
     }
   ],
   "items": {

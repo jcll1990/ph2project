@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
+
 function Home() {
   const history = useHistory();
 
@@ -10,9 +11,11 @@ function Home() {
   }
 
   return (
-    <>
-      <button onClick={() => login()}> Start </button>
-    </>
+    <div id="home">
+    <h1>Demon Hunter</h1>
+    
+    <button id="homebutton" onClick={() => login()}> Start </button>
+    </div>
   );
 }
 

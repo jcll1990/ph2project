@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import youDiedImage from "./images/extra/youdiedgiphy.gif"
+
 
 function YouDiedPage() {
 
@@ -13,11 +13,9 @@ function YouDiedPage() {
   }
 
   return (
-    <div className="died-screen">
-    <img src={youDiedImage} alt="You Died" />
-<br></br><br></br>
-<button onClick={() => goback()}> goback </button>
-
+    <div id="died-screen">
+    <br></br><br></br>
+    <button id="goback" onClick={() => goback()}> go back </button>
     </div>
   );
 }

@@ -2,6 +2,8 @@ import React from "react";
 import { useState,} from "react";
 import { useHistory } from "react-router-dom";
 
+
+
 function Login({allUsers, setPlayer}) {
 
   const history = useHistory();
@@ -195,11 +197,11 @@ function handleLoginSubmit(event) {
   
   <div className="login-container">
 
-    <h1>Welcome to Demon Hunter</h1>
+    <h1>Demon Hunter</h1>
     <h3>An old school simple RPG</h3>
 
 
-    <h3>LOG IN</h3>
+    <h4>LOG IN</h4>
     <form onSubmit={handleLoginSubmit}>
       <label>Email:</label>
       <br />
@@ -209,16 +211,16 @@ function handleLoginSubmit(event) {
       <br />
       <input type="password" id="loginPass" />
       <br />
-      <input type="submit" value="Login" />
+      <input className="loginput" type="submit" value="Login" />
     </form>
 
     <br />
 
-    <button onClick={() => createAccount()}>Create account</button>
+    <button className="logbutton" onClick={() => createAccount()}>Create account</button>
 
       {showCA === true ? (
       <>
-        <h4 className="create-account">CREATE NEW ACCOUNT</h4>
+        <h5 className="create-account">CREATE NEW ACCOUNT</h5>
         <br />
         <form onSubmit={handleCreateAccountSubmit}>
         <label>Email:</label>
@@ -229,7 +231,7 @@ function handleLoginSubmit(event) {
         <br />
         <input type="password" id="newPass" />
         <br />
-        <input type="submit" value="Create" />
+        <input className="loginput" type="submit" value="Create" />
         </form>
       </>
       ) : ( <></>
@@ -237,12 +239,12 @@ function handleLoginSubmit(event) {
 
     <br />
 
-    <button  onClick={() => changePassword()} >Change password</button>
+    <button  className="logbutton" onClick={() => changePassword()} >Change password</button>
 
       {showCP === true ? (
       <>
 
-        <h4 className="forgot-password">CHANGE PASSWORD?</h4>
+        <h5 className="forgot-password">CHANGE PASSWORD?</h5>
         <br />
         <form onSubmit={handleUpdatePasswordSubmit}>
         <label>Email:</label>
@@ -259,9 +261,9 @@ function handleLoginSubmit(event) {
         <br />
         <label>Confirm new password:</label>
         <br />
-        <input type="password" id="updateCheckNewPass" />
+        <input  type="password" id="updateCheckNewPass" />
         <br />
-        <input type="submit" value="Update" />
+        <input className="loginput" type="submit" value="Update" />
         </form>
       </>
       ) : ( <></>

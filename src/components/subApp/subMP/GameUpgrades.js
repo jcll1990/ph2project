@@ -204,12 +204,14 @@ function GameUpgrades({
  
     return (
 
-<div class="container">
-  <div class="allShop">
-        <div className="shop-card">
-            <h2>Store</h2>
+<div id="store">
 
-            <div className="shop-column">
+        <div id="storeText">
+            <h2>Store:</h2>
+        </div>
+
+        <div id="storeItems">
+            <div id="eqsword">
             <h4>Upgrade your sword</h4>
             {availableSwords.map((sword) => {
                 if (sword.id === shownSword) {
@@ -227,13 +229,13 @@ function GameUpgrades({
 
                     <div className="shop-buttons">
                         <button onClick={handlePrevSword}>Previous Sword</button>
-
+                        <br />
                         {sword.owned?
                         <button >SOLD</button>
                         :
                         <button onClick={() => handleBuySword(sword.id,sword.stats,sword.price)}>BUY</button>
                         }
-
+                         <br />
                         <button onClick={handleNextSword}>Next Sword</button>
                     </div>
                 </div>
@@ -241,7 +243,7 @@ function GameUpgrades({
             }})}
             </div>
 
-            <div className="shop-column">
+            <div id="eqarmor">
             <h4>Upgrade your armor</h4>
             {availableArmors.map((armor) => {
                 if (armor.id === shownArmor) {
@@ -259,11 +261,13 @@ function GameUpgrades({
 
                     <div className="shop-buttons">
                         <button onClick={handlePrevArmor}>Previous armor</button>
+                        <br />
                         {armor.owned?
                         <button >SOLD</button>
                         :
                         <button onClick={() => handleBuyArmor(armor.id,armor.stats,armor.price)}>BUY</button>
                         }
+                          <br />
                         <button onClick={handleNextArmor}>Next armor</button>
                     </div>
                 </div>
@@ -271,7 +275,7 @@ function GameUpgrades({
             }})}
             </div>
 
-            <div className="shop-column">
+            <div id="eqboots">
             <h4>Upgrade your boots</h4>
             {availableBoots.map((boots) => {
                 if (boots.id === shownBoots) {
@@ -289,11 +293,13 @@ function GameUpgrades({
 
                     <div className="shop-buttons">
                         <button onClick={handlePrevBoots}>Previous boots</button>
+                        <br />
                         {boots.owned?
                         <button >SOLD</button>
                         :
                         <button onClick={() => handleBuyBoots(boots.id,boots.stats,boots.price)}>BUY</button>
                         }
+                          <br />
                         <button onClick={handleNextBoots}>Next boots</button>
                     </div>
                 </div>
@@ -301,8 +307,8 @@ function GameUpgrades({
             }})}
             </div>
         </div>
-        </div>
-            </div>
+
+</div>
         
     )
 

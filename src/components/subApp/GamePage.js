@@ -1,13 +1,13 @@
 import React, { useEffect, useState, } from "react";
 import "../../css/GamePage.css";
 
-import champ2attackl from "./images/champ2/champ2attackl.gif"
-import champ2attackr from "./images/champ2/champ2attackr.gif"
-import champ2runr from "./images/champ2/champ2runr.gif"
-import champ2runl from "./images/champ2/champ2runl.gif"
+import champ2attackl from "../../images/champ/champ2attackl.gif"
+import champ2attackr from "../../images/champ/champ2attackr.gif"
+import champ2runr from "../../images/champ/champ2runr.gif"
+import champ2runl from "../../images/champ/champ2runl.gif"
 
-import demon1run from "./images/demon1/demon1run.gif"
-import demon1attack from "./images/demon1/demon1attack.gif"
+import demon1run from "../../images/demon1/demon1run.gif"
+import demon1attack from "../../images/demon1/demon1attack.gif"
 
 import { useHistory } from "react-router-dom";
 
@@ -812,45 +812,44 @@ if (attack && hit5) {
         </div>
 
 
-      <div style={{ position: "absolute"}}>
+      <div id="allhp" style={{ position: "absolute"}}>
 
-      <>
-      <h1>X{positionX}</h1>
-      <h1>Y{positionY}</h1>
+    
+
       <h1>PLAYER HP: {playerHP}</h1>
 
       {enemy1? (
-        <h1>DEMON HP: {enemyHP}</h1>
+        <h2>DEMON HP: {enemyHP}</h2>
         ):(
         <></>
         )}
 
       {enemy2? (
-        <h1>DEMON2 HP: {enemyHP2}</h1>
+        <h2>DEMON2 HP: {enemyHP2}</h2>
         ):(
         <></>
         )}
 
       {enemy3? (
-        <h1>DEMON3 HP: {enemyHP3}</h1>
+        <h2>DEMON3 HP: {enemyHP3}</h2>
         ):(
         <></>
         )}
 
       {enemy4? (
-        <h1>DEMON4 HP: {enemyHP4}</h1>
+        <h2>DEMON4 HP: {enemyHP4}</h2>
         ):(
         <></>
         )}
 
       {enemy5? (
-        <h1>DEMON5 HP: {enemyHP5}</h1>
+        <h2>DEMON5 HP: {enemyHP5}</h2>
         ):(
         <></>
         )}
 
 
-      </>
+  
       </div>
     </div>
   );
