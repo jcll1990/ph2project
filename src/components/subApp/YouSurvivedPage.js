@@ -1,11 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-function YouSurvivedPage() {
+function YouSurvivedPage({logMusic}) {
   const history = useHistory();
 
   function goback() {
-
+    logMusic.play()
     history.push("/mainpage");
   }
 

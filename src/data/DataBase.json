@@ -4,13 +4,25 @@
       "id": 1,
       "email": "email1@gmail.com",
       "password": "1",
-      "money": 200,
+      "money": 100,
       "hp": 25,
-      "speed": 20,
-      "dmg": 2,
+      "speed": 25,
+      "dmg": 8,
       "armor": 1,
-      "boots": 3,
-      "sword": 1
+      "boots": 4,
+      "sword": 3
+    },
+    {
+      "id": 2,
+      "email": "email2@gmail.com",
+      "password": "2",
+      "money": 200,
+      "hp": 10,
+      "speed": 10,
+      "dmg": 1,
+      "armor": 0,
+      "boots": 0,
+      "sword": 0
     }
   ],
   "items": {

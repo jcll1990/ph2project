@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   background-color: black;
@@ -8,7 +10,7 @@ body {
   display: flex;
   background-image: url('/public/images/camp.png');
   background-size: cover;
-  background-repeat:repeat-y;
+  background-repeat: no-repeat;
   height: 100vh; /* Occupy the full viewport height */
   width: 100%; /* Occupy the full viewport width */
   flex-direction: row;
@@ -18,9 +20,6 @@ body {
     #playershit {
       flex:1 ; /* Grow to take up available space */
       /* Additional styles for playershit if needed */
-      max-width: 100%; /* Ensure the child doesn't exceed the container's width */
-      max-height: 100%; 
-      
     }
   
       #equipmentsection {
@@ -205,12 +204,12 @@ body {
 #allhp h1{
   color:white;
   font-family: 'IM Fell English SC', Arial, sans-serif;
-  font-size: 20px
+  font-size: 30px
 }
 #allhp h2{
   color:white;
   font-family: 'IM Fell English SC', Arial, sans-serif;
-  font-size: 15px
+  font-size: 20px
 }
 .login-container{
   background-image: url('/public/images/login.png');
@@ -222,7 +221,7 @@ body {
   justify-content: center;
   text-align: center;
   align-items: center;
-  position: fixed; /* Use fixed positioning to cover the entire viewport */
+  /* Use fixed positioning to cover the entire viewport */
   top: 0; /* Position from the top of the viewport */
   left: 0; /* Position from the left of the viewport */
   width: 100%; /* Occupy the full width of the viewport */

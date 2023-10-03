@@ -7,12 +7,20 @@ import MainPage from "./subApp/MainPage.js";
 import GamePage from "./subApp/GamePage.js";
 import YouDiedPage from "./subApp/YouDiedPage.js";
 import YouSurvivedPage from "./subApp/YouSurvivedPage.js"
+import loginMusic from "../data/music/LOGIN_MUSIC.mp3"
+import battleMusic from "../data/music/diablo_battle_music.mp3"
 
 import {Switch, Route} from 'react-router-dom';
 
 import "../css/Main.css"
 
 function App() {
+
+  const loginMusic1 = new Audio(loginMusic);
+  const battleMusic1 = new Audio(battleMusic);
+
+  const [logMusic, setLogMusic] = useState(loginMusic1)
+  const [batMusic, setBatMusic] = useState(battleMusic1)
 
 
   const [allUsers, setAllUsers] = useState([]);
@@ -61,6 +69,7 @@ function App() {
 
       <Route exact path="/">
         <Home
+        logMusic = {logMusic}
 
         />
       </Route>
@@ -84,6 +93,8 @@ function App() {
             setStoreItems = {setStoreItems}
             allLevels ={allLevels}
             setSelectedLevel = {setSelectedLevel}
+            logMusic = {logMusic}
+            batMusic = {batMusic}
         />
       </Route>
 
@@ -97,6 +108,8 @@ function App() {
               setPlayer = {setPlayer}
               setLaunch={setLaunch}
               selectedlevel = {selectedlevel}
+              logMusic = {logMusic}
+              batMusic = {batMusic}
             />
           ) : (
             <img src="/images/load.jpg" alt="Loading" />
@@ -106,12 +119,14 @@ function App() {
 
       <Route exact path="/youdied">
         <YouDiedPage
+        logMusic ={logMusic}
 
         />
       </Route>
 
       <Route exact path="/yousurvived">
         <YouSurvivedPage
+        logMusic ={logMusic}
 
         />
       </Route>

@@ -16,11 +16,12 @@ function GamePage({
   player,
   setPlayer,
   setLaunch,
-  selectedlevel
+  selectedlevel,
+  logMusic,
+  batMusic 
   }) {
 
 const history = useHistory();
-
 
 const [playerHP, setPlayerHP] = useState(player.hp)
 let playerSpeed = player.speed
@@ -158,9 +159,13 @@ const [enemyPositionY5, setEnemyPositionY5] = useState(300);
     left: `${Math.max(0, Math.min(1450, enemyPositionX5))}px`, // Ensure the red square stays within the div
   };
 
+  
 
   function endgame() {
 
+
+    
+    batMusic.pause()
     
     if (flag && !enemy1 && !enemy2 && !enemy3 && !enemy4 && !enemy5) {
    
@@ -208,6 +213,9 @@ function goback () {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////Player move and attack
 
+
+
+
 useEffect(() => {
   const handleKeyDown = (e) => {
     if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'a'].includes(e.key)) {
@@ -245,7 +253,7 @@ useEffect(() => {
           break;
         case "a":
           setAttack(true);
-
+       
 
           if (imageToUse == champ2runl) { setImageToUse(champ2attackl)} else {setImageToUse(champ2attackr)}
 
@@ -263,6 +271,7 @@ useEffect(() => {
         case "ArrowUp":
           setIsMovingUp(false);
           setAttack(false);
+          
           break;
         case "ArrowDown":
           setIsMovingDown(false);

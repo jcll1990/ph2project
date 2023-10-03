@@ -2,12 +2,16 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 
-function Home() {
+
+function Home({logMusic}) {
+ 
+
   const history = useHistory();
 
   function login() {
 
     history.push("/login");
+    logMusic.play()
   }
 
   return (

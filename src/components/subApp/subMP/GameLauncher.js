@@ -1,10 +1,15 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
+
+
+
 function GameLauncher({
   setLaunch,
   setSelectedLevel,
-  allLevels
+  allLevels,
+  logMusic,
+  batMusic
 }) {
 
   const history = useHistory();
@@ -14,7 +19,10 @@ function GameLauncher({
   function handleSubmit(event) {
     event.preventDefault();
 
-
+    console.log(logMusic)
+    logMusic.pause()
+    batMusic.play()
+    
     const thelvlnumb = event.target.levelSelect.value;
 
     const thelvl = allLevels.find(level => level.id == thelvlnumb);
@@ -24,6 +32,9 @@ function GameLauncher({
     if (thelvl) {
       setSelectedLevel(thelvl);
       setLaunch(true);
+
+    
+
       history.push("/gamepage");
     } else {
       console.error("Selected level not found");

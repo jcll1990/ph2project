@@ -2,13 +2,13 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 
-function YouDiedPage() {
+function YouDiedPage({logMusic}) {
 
 // const diedImage = youDiedImage
   const history = useHistory();
 
   function goback() {
-
+    logMusic.play()
     history.push("/mainpage");
   }
 

@@ -1,6 +1,6 @@
-import React from "react";
-import { useState,} from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+
 
 
 
@@ -32,6 +32,7 @@ function handleLoginSubmit(event) {
         setPlayer(allUsers[i]);
         userFound = true;
         alert("User found");
+        
         login(allUsers[i]);
         break;
       }
@@ -122,7 +123,7 @@ function handleLoginSubmit(event) {
    
         alert("New user created \nNow log in")
         setShowCA(false)
-        window.location.reload();
+        history.push("/");
       })
   }
   
@@ -179,7 +180,7 @@ function handleLoginSubmit(event) {
                 })
                 .then(response => {
                   alert('Password changed')
-                  window.location.reload();
+                  history.push("/");
                 })
             } else {
                 alert('New passwords do not match')

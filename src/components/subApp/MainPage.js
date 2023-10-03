@@ -14,7 +14,9 @@ function MainPage({
     storeItems,
     setStoreItems,
     allLevels,
-    setSelectedLevel
+    setSelectedLevel,
+    logMusic,
+    batMusic
 }) {
 
 
@@ -47,6 +49,8 @@ function MainPage({
                 launch={launch}
                 allLevels = {allLevels}
                 setSelectedLevel = {setSelectedLevel}
+                logMusic = {logMusic}
+                batMusic = {batMusic}
             />
 
             <GameUpgrades id="store"
